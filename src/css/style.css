@@ -1,1 +1,42 @@
 @import url(./normalize.css);
+@import url(./aside.css);
+@import url('./calendar.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500&display=swap');
+
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Assistant', sans-serif;
+}
+
+:root{
+    --primary-color: #041C32;
+    --secondary-color:#04293A;
+    --tertiary-color: #064663;
+    --quaternary-color: #ECB365;
+    --font-family-exo: 'Exo', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    height: 100vh;
+    color: #eee;
+}
+
+main{
+    display: flex;
+    width: 95%;
+    height: 90%;
+    border: 2px solid white;
+    border-radius: 7px;
+}
+
+.hide{
+    display: none;
+}
