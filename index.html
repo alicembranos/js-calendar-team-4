@@ -6,12 +6,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <script src="./src/js/main.js" type="module"></script>
     <title>Calendar</title>
 </head>
 
 <body>
+    <main>
+        <aside id='dayCard' class="dayCard">
+            <div id='dayCard__header' class="dayCard__header">
+                <button id="dayCard__previousButton" class="dayCard__previousButton">⬅️</button>
+                <h1 id="dayCard__h1" class="dayCard__h1">29th Apr</h1>
+                <button id="dayCard__dropdownButton" class="dayCard__dropdownButton">🔽</button>
+                <button id="dayCard__nextButton" class="dayCard__nextButton">➡️</button>
+            </div>
+            <button id="dayCard__addEventButton" class="dayCard__addEventButton">🎭➕</button>
+            <div id="dayCard-calendar__div" class="dayCard-calendar__div">Mini Calendar</div>
+            <ul id="dayCard__ul" class="dayCard__ul">
+                <li>Buy GTR🚙</li>
+                <li>Go to HiperDino</li>
+            </ul>
+        </aside>
+        <section id="mainCalendar" class="mainCalendar">
+        </section>
+    </main>
+    <div id='modal__container' class="modal__container hide">
+        <div id="modal__createEvent" class="modal__createEvent">
+            <h2 id="modal__h2" class="modal__h2">Create <span id="modal__span" class="modal__span">Event</span></h2>
+            <form id="modal__createEventForm" class="modal__createEventForm">
+                <div id="modal__col" class="modal__col">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" name="title">
 
+                    <label for="initial">Initial Date</label>
+                    <input id='initial__date' type="date" name="initial">
+                    <input id='initial__time' type="time" name="initial">
+
+                    <input id="checkbox__endDate" type="checkbox" name="checkbox__endDate">
+                    <label for="checkbox__endDate">End Date</label>
+
+                    <label for="end">End Date</label>
+                    <input id='end__date' type="date" name="end">
+                    <input id='end__time' type="time" name="end">
+
+                    <input id="checkbox__reminder" type="checkbox" name="checkbox__reminder">
+                    <label for="checkbox__reminder">Remind me when this event expire</label>
+
+                    <label for="select__reminder">Reminder</label>
+                    <select id="select__reminder" name="select__reminder">
+                        <option value="">--Please choose an option--</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                        <option value="30">30 minutes</option>
+                        <option value="60">1 hour</option>
+                    </select>
+
+                </div>
+                <div class="modal__col">
+                    <label for="select__eventType">Event Type</label>
+                    <select id="select__eventType" name="select__eventType">
+                        <option value="">--Please choose an option--</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="personal">Personal</option>
+                        <option value="study">Study</option>
+                        <option value="tinder">Tinder</option>
+                    </select>
+
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Add a description"></textarea>
+
+                    <article class="form__buttons">
+                        <button id="form__acceptBtn" class="form__acceptBtn">Accept</button>
+                        <button id="form__cancelBtn" class="form__cancelBtn">Cancel</button>
+                    </article>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="modal__container" class="modal__container hide">
+        <div id="modal__infoEvent" class="modal__infoEvent">
+            <h2 id="modal__info" class="modal__info-title"></h2>
+            <h3 id='modal__initalDate' class="modal__initalDate"></h3>
+            <p class="modal-eventInfo__p"></p>
+
+            <h3 id='modal__endDate' class="modal__endDate"></h3>
+            <p class="modal-eventInfo__p"></p>
+
+            <h3 id="modal__eventType" class="modal__eventType"></h3>
+            <p class="modal-eventInfo__p"></p>
+
+            <h3 id="modal__description" class="modal__description"></h3>
+            <p class="modal-eventInfo__p"></p>
+
+            <button id='modal__doneBtn' class="modal__doneBtn">Done</button>
+            <button id='modal__exitBtn' class="modal__exitBtn">Exit</button>
+        </div>
+    </div>
+    <template id="template">
+        <div class="cell__calendar">
+            <div class="cell__calendar-header">
+                <ul class="cell__calendar_eventType"></ul>
+                <p class="cell__calendar_day"></p>
+            </div>
+            <ul class="cell__calendar-events"></ul>
+            <i class="bx bx-edit-alt"></i>
+        </div>
+    </template>
 </body>
 
 </html>
