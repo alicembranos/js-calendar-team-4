@@ -39,8 +39,13 @@ const calendar = (year) => {
     });
   });
 
+  if (!localStorage.getItem(`data-${year}`)) {
+    localStorage.setItem(`data-${year}`, JSON.stringify(calendarMonth));
+  }
+
   return calendarMonth;
 };
+calendar(2022);
 
 class Event {
   constructor(
@@ -75,24 +80,6 @@ class Event {
     this.finnished = value;
   }
 }
-
-const setDays = (parentElement, numbersOfDays, numberOfMonth) => {
-  const startOn = new Date(year, numberOfMonth, 0).getDay();
-  console.log(numberOfMonth + 1, startOn + 1);
-  [...Array(numbersOfDays).keys()].map((day, index) => {
-    let dayElement = document.createElement("p");
-
-    if (
-      index === 0
-        ? dayElement.setAttribute("style", `grid-column-start: ${startOn + 1}`)
-        : ""
-    );
-
-    dayElement.textContent = day + 1;
-    dayElement.setAttribute("value", day + 1);
-    parentElement.appendChild(dayElement);
-  });
-};
 
 // let newCalendar = calendar(2022);
 
@@ -129,3 +116,14 @@ previousBtn.addEventListener("click", () => {
   const currentMonth = document.querySelector('[currentmonth="current"]');
   previousMonth(currentMonth);
 });
+
+function newEvent(title, description, type, initDate, hasEndDate, endDate, remind, remindTime) {
+
+  return {
+    initDate,
+    endDate: !hasEndDate || endDate == "Invalid Date" ? null : endDate,
+    title: title.trim(), remind, remindTime, type,
+    description: description.trim(),
+    done: false,
+  };
+};
