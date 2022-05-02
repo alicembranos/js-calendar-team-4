@@ -18,6 +18,7 @@
     padding: 1rem 3rem;
     color: black;
     border-radius: 0.5rem;
+    /* pointer-events: none; */
 }
 
 .modal__col {
