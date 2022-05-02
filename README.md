@@ -75,5 +75,45 @@
 
         *Generate Calendar*
         *Display Calendar*
+
+## 2nd May 
+
+### PARTICIPANTS 
+
+* Jesús Herrera
+* Alejandro Ávila
+* Alicia Cembranos
+
+### DONE
+
+* Create calendar function
+* Create events at any day of the month (Modal Window)
+* Display or render calendar
+* Event Listener Open Form for each Day
+* Display button for creating events
+* Create Cell for each day (Clone from template)
+
+
+
+### DIFFICULTIES
+
+* How to storage the events in the localstorage ?
+* Upload events taking the array from the localstorage to a local array or functions to loop all over the year and add events to each day looking in the array taked from the localstorage?
+* First logical part was really good but we found problems trying to connect with the second part.
+
+#### PERFORMED AND IN PROCESS TASKS BY TEAM MEMBER
+
+![This is a alt text.](./src/assets/images/worklog/sprint%202_board1a.png "Sprint 2a.")
+
+
+![This is a alt text.](./src/assets/images/worklog/sprint%202_board1b.png "Sprint 2b.")
+
+#### TO DO IN NEXT SESSION
+
+* Create the logical of the local storage
+* Display events of each day
+* Add event listeners to all reminders
+* Event Form Validation (event class)
+* Current date with different custom style
         
         
