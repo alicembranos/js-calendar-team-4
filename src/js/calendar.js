@@ -33,4 +33,3 @@ const calendar = (year) => {
     return calendarMonth;
 }
 
-console.log(calendar(2022));
