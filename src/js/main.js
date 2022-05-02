@@ -1,10 +1,10 @@
-// import {
-//   getWeeksDays,
-//   getCurrentDate,
-//   getFirstDayOfMonth,
-//   setDays2,
-// } from "./utils.js";
-// import { nextMonth, previousMonth } from "./calendarController.js";
+import {
+  getWeeksDays,
+  getCurrentDate,
+  getFirstDayOfMonth,
+  setDays2,
+} from "./utils.js";
+import { nextMonth, previousMonth } from "./calendarController.js";
 const main = document.querySelector("main");
 
 const year = 2022;
@@ -76,25 +76,8 @@ class Event {
   }
 }
 
-const setDays = (parentElement, numbersOfDays, numberOfMonth) => {
-  const startOn = new Date(year, numberOfMonth, 0).getDay();
-  console.log(numberOfMonth + 1, startOn + 1);
-  [...Array(numbersOfDays).keys()].map((day, index) => {
-    let dayElement = document.createElement("p");
 
-    if (
-      index === 0
-        ? dayElement.setAttribute("style", `grid-column-start: ${startOn + 1}`)
-        : ""
-    );
-
-    dayElement.textContent = day + 1;
-    dayElement.setAttribute("value", day + 1);
-    parentElement.appendChild(dayElement);
-  });
-};
-
-// let newCalendar = calendar(2022);
+let newCalendar = calendar(2022);
 
 const buildCalendar = (calendar) => {
   calendar.forEach((month) => {
@@ -117,9 +100,9 @@ const buildCalendar = (calendar) => {
   });
 };
 
-//   buildCalendar(newCalendar);
-//   getCurrentDate(locale);
-//   getFirstDayOfMonth(year, numberOfMonths);
+  buildCalendar(newCalendar);
+  getCurrentDate(locale);
+  getFirstDayOfMonth(year, numberOfMonths);
 
 nextBtn.addEventListener("click", () => {
   const currentMonth = document.querySelector('[currentmonth="current"]');

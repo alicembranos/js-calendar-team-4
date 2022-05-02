@@ -58,9 +58,15 @@ const getFirstDayOfMonth = (year, numberOfMonths) => {
   });
 };
 
+const createDayCell = (parentElement, numbersOfDays) => {
+  const cellDayTemplate = document.getElementById("cellDay");
+  const cell = cellDayTemplate.content.firstElementChild.cloneNode(true);
+  cell
+};
+
 const setDays2 = (parentElement, numbersOfDays) => {
-  const cellDayTemplate = document.getElementById("cellDay").content;
-  let cellNumber = cellDayTemplate.getElementById("cell__number");
+  const cellDayTemplate = document.getElementById("cell__calendar").content;
+  let cellNumber = cellDayTemplate.getElementById("cell__calendar-header");
   const fragment = document.createDocumentFragment();
 
   [...Array(numbersOfDays).keys()].forEach((day) => {
@@ -71,5 +77,12 @@ const setDays2 = (parentElement, numbersOfDays) => {
   });
   parentElement.appendChild(fragment);
 };
+
+function addOpenFormListener(cell, month, day) {
+  cell.querySelector('edit-btn').addEventListener("click", () => {
+    
+  });
+}
+
 
 export { getWeeksDays, getCurrentDate, getFirstDayOfMonth, setDays2 };
