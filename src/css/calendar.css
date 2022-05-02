@@ -1,8 +1,28 @@
 .mainCalendar{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar {
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.days__container{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 0.5fr repeat(5, 1fr);
     gap: 1rem;
-    width: 100%;
 }
 
+.currentDay__p{
+    background-color: #c22222;
+    text-align: center;
+    color: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+}

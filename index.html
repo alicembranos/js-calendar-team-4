@@ -30,8 +30,8 @@
         <section id="mainCalendar" class="mainCalendar">
         </section>
     </main>
-    <div id='modal__container' class="modal__container hide">
-        <div id="modal__createEvent" class="modal__createEvent">
+    <div id='modal__containerCreate' class="modal__container hide">
+        <div id="modal__createEvent" class="modal__createEvent hide">
             <h2 id="modal__h2" class="modal__h2">Create <span id="modal__span" class="modal__span">Event</span></h2>
             <form id="modal__createEventForm" class="modal__createEventForm">
                 <div id="modal__col" class="modal__col">
@@ -45,21 +45,23 @@
                     <input id="checkbox__endDate" type="checkbox" name="checkbox__endDate">
                     <label for="checkbox__endDate">End Date</label>
 
-                    <label for="end">End Date</label>
-                    <input id='end__date' type="date" name="end">
-                    <input id='end__time' type="time" name="end">
+                    <label for="end" class="hide">End Date
+                        <input id='end__date' type="date" name="end">
+                        <input id='end__time' type="time" name="end">
+                    </label>
 
                     <input id="checkbox__reminder" type="checkbox" name="checkbox__reminder">
                     <label for="checkbox__reminder">Remind me when this event expire</label>
 
-                    <label for="select__reminder">Reminder</label>
-                    <select id="select__reminder" name="select__reminder">
-                        <option value="">--Please choose an option--</option>
-                        <option value="5">5 minutes</option>
-                        <option value="10">10 minutes</option>
-                        <option value="30">30 minutes</option>
-                        <option value="60">1 hour</option>
-                    </select>
+                    <label for="select__reminder" class="hide">Reminder
+                        <select id="select__reminder" name="select__reminder">
+                            <option value="">--Please choose an option--</option>
+                            <option value="5">5 minutes</option>
+                            <option value="10">10 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                        </select>
+                    </label>
 
                 </div>
                 <div class="modal__col">
@@ -83,8 +85,8 @@
             </form>
         </div>
     </div>
-    <div id="modal__container" class="modal__container hide">
-        <div id="modal__infoEvent" class="modal__infoEvent">
+    <div id="modal__containerInfo" class="modal__container hide">
+        <div id="modal__infoEvent" class="modal__infoEvent hide">
             <h2 id="modal__info" class="modal__info-title">Event Title</h2>
             <h3 id='modal__initalDate' class="modal__initalDate">Initial date</h3>
             <p class="modal-eventInfo__p">23/02/2022</p>

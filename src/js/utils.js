@@ -1,6 +1,16 @@
+import {
+  formEvent
+} from "./main.js";
+
+const modal = document.getElementById("modal__containerCreate");
+const modalInfo = document.getElementById("modal__containerInfo");
+
+
 const getWeeksDays = (parentElement, locale) => {
   const weekDays = [...Array(7).keys()];
-  const intlWeekDays = new Intl.DateTimeFormat(locale, { weekday: "long" });
+  const intlWeekDays = new Intl.DateTimeFormat(locale, {
+    weekday: "long"
+  });
 
   weekDays.forEach((weekDay) => {
     const weekDayElement = document.createElement("h6");
@@ -26,7 +36,7 @@ const getCurrentDate = (locale) => {
 
   Array.from(months).forEach((month, index) => {
     if (month.getAttribute("name") === currentMonth) {
-      months[index].classList.remove("hidden");
+      months[index].classList.remove("hide");
       months[index].setAttribute("currentMonth", "current");
       currentMonthElements = months[index];
     }
@@ -34,7 +44,7 @@ const getCurrentDate = (locale) => {
   const dayElements = currentMonthElements.querySelectorAll("[value]");
   Array.from(dayElements).forEach((day) => {
     if (day.textContent === currentDay.toString()) {
-      day.classList.add("currentDay");
+      day.classList.add("currentDay__p");
     }
   });
 };
@@ -58,32 +68,49 @@ const getFirstDayOfMonth = (year, numberOfMonths) => {
   });
 };
 
-const createDayCell = (parentElement, numbersOfDays) => {
-  const cellDayTemplate = document.getElementById("cellDay");
-  const cell = cellDayTemplate.content.firstElementChild.cloneNode(true);
-  cell
-};
 
 const setDays2 = (parentElement, numbersOfDays) => {
+
   const cellDayTemplate = document.getElementById("template").content;
-  let cellNumber = cellDayTemplate.getElementById("cell__calendar_day");
-  const eventButton = cellDayTemplate.querySelector('.btn-event');
+  let cellNumber = cellDayTemplate.querySelector(".cell__calendar_day");
   const fragment = document.createDocumentFragment();
 
   [...Array(numbersOfDays).keys()].forEach((day) => {
     cellNumber.textContent = day + 1;
     cellNumber.setAttribute("value", day + 1);
-    eventButton.addEventListener('click', (e) => {
-      
-    })
+
     const clone = cellDayTemplate.cloneNode(true);
+    const buttonEvent = clone.querySelector(".btn-event");
+    buttonEvent.addEventListener("click", (e) => {
+      openForm(e);
+    });
     fragment.appendChild(clone);
   });
   parentElement.appendChild(fragment);
+
 };
 
 function openForm(e) {
+  const day = parseInt(e.target.parentNode.firstElementChild.lastElementChild.textContent);
+  let month = e.target.parentNode.parentNode.parentNode.getAttribute("name");
+  const year = e.target.parentNode.parentNode.parentNode.getAttribute("year");
+
+  month = month.charAt(0).toUpperCase() + month.slice(1);
+  const date = new Date(`${month} ${day+1}, ${year}`);
+  formEvent.elements['initial__date'].value = date.toISOString().substring(0,10);
+  modal.classList.toggle("hide");
+  formEvent.parentElement.classList.toggle("hide");
   
 }
 
-export { getWeeksDays, getCurrentDate, getFirstDayOfMonth, setDays2 };
+modal.addEventListener("click", () => {
+  modal.classList.toggle("hide");
+  formEvent.parentElement.classList.toggle("hide");
+});
+
+export {
+  getWeeksDays,
+  getCurrentDate,
+  getFirstDayOfMonth,
+  setDays2
+};

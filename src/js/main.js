@@ -13,6 +13,8 @@ const numberOfMonths = [...Array(12).keys()];
 const nextBtn = document.getElementById("next-arrow");
 const previousBtn = document.getElementById("back-arrow");
 
+const formEvent = document.getElementById("modal__createEventForm");
+
 const calendar = (year) => {
   let calendarMonth = [];
   numberOfMonths.map((numberOfMonth, index) => {
@@ -81,26 +83,27 @@ class Event {
   }
 }
 
-// let newCalendar = calendar(2022);
+let newCalendar = calendar(2022);
 
 const buildCalendar = (calendar) => {
   calendar.forEach((month) => {
-    const body = document.getElementById("body");
     let monthElement = document.createElement("div");
     let monthName = document.createElement("h2");
     let daysContainer = document.createElement("div");
+    const containerCalendar = document.getElementById("mainCalendar");
 
     daysContainer.classList.add("days__container");
     monthElement.classList.add("calendar");
-    monthElement.classList.add("hidden");
+    monthElement.classList.add("hide");
     monthElement.setAttribute("name", month.nameOfMonth);
+    monthElement.setAttribute("year", month.year);
     monthName.textContent = month.nameOfMonth.toUpperCase();
 
     monthElement.appendChild(monthName);
     monthElement.appendChild(daysContainer);
     getWeeksDays(daysContainer, locale);
     setDays2(daysContainer, month.numbersOfDays, year);
-    main.appendChild(monthElement);
+    containerCalendar.appendChild(monthElement);
   });
 };
 
@@ -108,14 +111,20 @@ const buildCalendar = (calendar) => {
   getCurrentDate(locale);
   getFirstDayOfMonth(year, numberOfMonths);
 
-nextBtn.addEventListener("click", () => {
-  const currentMonth = document.querySelector('[currentmonth="current"]');
-  nextMonth(currentMonth);
-});
-previousBtn.addEventListener("click", () => {
-  const currentMonth = document.querySelector('[currentmonth="current"]');
-  previousMonth(currentMonth);
-});
+// nextBtn.addEventListener("click", () => {
+//   const currentMonth = document.querySelector('[currentmonth="current"]');
+//   nextMonth(currentMonth);
+// });
+
+// previousBtn.addEventListener("click", () => {
+//   const currentMonth = document.querySelector('[currentmonth="current"]');
+//   previousMonth(currentMonth);
+// });
+
+function submitEventForm(e) {
+  
+}
+
 
 function newEvent(title, description, type, initDate, hasEndDate, endDate, remind, remindTime) {
 
@@ -126,4 +135,9 @@ function newEvent(title, description, type, initDate, hasEndDate, endDate, remin
     description: description.trim(),
     done: false,
   };
+};
+
+
+export {
+  formEvent
 };

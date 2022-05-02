@@ -65,7 +65,6 @@ class Event {
                 break;
         }
     }
-
     //description limit input 500 characters
 
 }
