@@ -3,6 +3,7 @@ import {
 } from "./main.js";
 
 const modal = document.getElementById("modal__containerCreate");
+const cancelBtnModal = document.getElementById("form__cancelBtn");
 const modalInfo = document.getElementById("modal__containerInfo");
 
 
@@ -106,6 +107,10 @@ function openForm(e) {
 modal.addEventListener("click", () => {
   modal.classList.toggle("hide");
   formEvent.parentElement.classList.toggle("hide");
+});
+
+cancelBtnModal.addEventListener('click', () => {
+  cancelBtnModal.parentElement.parentElement.parentElement.parentElement.classList.toggle('hide')
 });
 
 export {
