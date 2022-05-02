@@ -1,6 +1,7 @@
 @import url(./normalize.css);
 @import url(./aside.css);
 @import url('./calendar.css');
+@import url('./modal.css');
 
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500&display=swap');

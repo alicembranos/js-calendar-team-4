@@ -1,0 +1,17 @@
+.modal__container{
+    background-color: #f9f9f9;
+    padding: 1rem 3rem;
+    color: black;
+    border-radius: 0.5rem;
+}
+.modal__createEventForm {
+    display: flex;
+    font-size: 0.7rem;
+}
+
+.modal__col {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid yellow;
+    padding: 1.3rem;
+}
