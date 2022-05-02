@@ -65,24 +65,25 @@ const createDayCell = (parentElement, numbersOfDays) => {
 };
 
 const setDays2 = (parentElement, numbersOfDays) => {
-  const cellDayTemplate = document.getElementById("cell__calendar").content;
-  let cellNumber = cellDayTemplate.getElementById("cell__calendar-header");
+  const cellDayTemplate = document.getElementById("template").content;
+  let cellNumber = cellDayTemplate.getElementById("cell__calendar_day");
+  const eventButton = cellDayTemplate.querySelector('.btn-event');
   const fragment = document.createDocumentFragment();
 
   [...Array(numbersOfDays).keys()].forEach((day) => {
     cellNumber.textContent = day + 1;
     cellNumber.setAttribute("value", day + 1);
+    eventButton.addEventListener('click', (e) => {
+      
+    })
     const clone = cellDayTemplate.cloneNode(true);
     fragment.appendChild(clone);
   });
   parentElement.appendChild(fragment);
 };
 
-function addOpenFormListener(cell, month, day) {
-  cell.querySelector('edit-btn').addEventListener("click", () => {
-    
-  });
+function openForm(e) {
+  
 }
-
 
 export { getWeeksDays, getCurrentDate, getFirstDayOfMonth, setDays2 };
