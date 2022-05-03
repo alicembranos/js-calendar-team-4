@@ -50,7 +50,7 @@ const calendar = (year) => {
     return calendarMonth;
 };
 // calendar(2022);
-git 
+
 let newCalendar = calendar(2022);
 
 const buildCalendar = (calendar) => {

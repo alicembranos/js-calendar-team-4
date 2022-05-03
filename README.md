@@ -115,5 +115,43 @@
 * Add event listeners to all reminders
 * Event Form Validation (event class)
 * Current date with different custom style
-        
+
+
+## 3nd May 
+
+### PARTICIPANTS 
+
+* Jesús Herrera
+* Alejandro Ávila
+* Alicia Cembranos
+
+### DONE
+
+* Create the logical of the local storage
+* Save and upload events
+* Display events of each day
+* Event Form Validation (event class) (Sprint 3)
+* Event Class (Sprint 3)
+
+### DIFFICULTIES
+
+* We faced some difficulties with dates in JS and to understand the different between UTC ISO string formats.
+
+#### LESSONS LEARNED
+
+* The getTimezoneOffset() method returns the difference, in minutes, between a date as evaluated in the UTC time zone, and the same date as evaluated in the local time zone.
+
+#### PERFORMED AND IN PROCESS TASKS BY TEAM MEMBER
+
+![This is a alt text.](./src/assets/images/worklog/sprint%203_board1a.png "Sprint 3a.")
+
+
+![This is a alt text.](./src/assets/images/worklog/sprint%203_board1b.png "Sprint 3b.")
+
+#### TO DO IN NEXT SESSION
+
+* Function render day card
+* Reminder for warning message
+* Info modal for event info
+
         
