@@ -1,4 +1,5 @@
 import { formEvent } from "./main.js";
+import { submitEventForm } from "./validation.js";
 
 const modal = document.getElementById("modal__containerCreate");
 const cancelBtnModal = document.getElementById("form__cancelBtn");
@@ -93,29 +94,36 @@ function openForm(e) {
   const year = e.target.parentNode.parentNode.parentNode.getAttribute("year");
 
   month = month.charAt(0).toUpperCase() + month.slice(1);
-  const date = new Date(`${month} ${day+1}, ${year}`);
-  formEvent.elements['initial__date'].value = date.toISOString().substring(0,10);
-  formEvent.elements['initial__time'].value = "00:00"
-  formEvent.elements['end__date'].value = date.toISOString().substring(0,10);
-  formEvent.elements['end__time'].value = "00:00"
+  const date = new Date(`${month} ${day}, ${year}`);
+  var isoDateTime = new Date(
+    date.getTime() - date.getTimezoneOffset() * 60000
+  ).toISOString();
+
+  formEvent.elements["initial__date"].value = isoDateTime.substring(0, 10);
+  formEvent.elements["initial__time"].value = "00:00";
+  formEvent.elements["end__date"].value = isoDateTime.substring(0, 10);
+  formEvent.elements["end__time"].value = "00:00";
   modal.classList.toggle("hide");
   // formEvent.parentElement.classList.toggle("hide");
 }
 
 modal.addEventListener("click", (e) => {
-  if (e.target.id === "modal__containerCreate") {
-    modal.classList.toggle("hide");
-    console.log("modal");
-  } else if (e.target.id === "form__cancelBtn") {
+  if (
+    e.target.id === "modal__containerCreate" ||
+    e.target.id === "form__cancelBtn"
+  ) {
     e.preventDefault();
     modal.classList.toggle("hide");
-    console.log("button");
-  } else if (e.target.id === "form__saveBtn") {
-    e.preventDefault();
-    console.log("save");
+  } else if (e.target.id === "checkbox__endDate") {
+    const inputDateEnd = formEvent.querySelector("label[for=end]");
+    inputDateEnd.classList.toggle("hide");
+  } else if (e.target.id === "checkbox__reminder") {
+    const reminder = formEvent.querySelector("label[for=select__reminder]");
+    reminder.classList.toggle("hide");
+  } else if (e.target.id === "form__acceptBtn") {
+    submitEventForm(e);
+    modal.classList.toggle("hide");
   }
-
-  console.log(e);
 });
 
 export { getWeeksDays, getCurrentDate, getFirstDayOfMonth, setDays2 };
