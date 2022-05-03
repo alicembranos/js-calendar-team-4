@@ -4,6 +4,10 @@ import {
     Event
   } from "./events.js";
 
+import {
+    saveEvents
+} from "./localstorage.js";
+
   formEvent.elements['checkbox__endDate'].addEventListener("change", () => {
     const inputDateEnd = formEvent.querySelector('label[for=end]');
     inputDateEnd.classList.toggle('hide');
@@ -69,7 +73,7 @@ import {
   
     if (!hasErrorMessages(formEvent)) {
       //add to calendar
-      
+
     };
   
   }
