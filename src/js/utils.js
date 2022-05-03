@@ -1,15 +1,13 @@
-import {
-  formEvent
-} from "./main.js";
+import { formEvent } from "./main.js";
 
 const modal = document.getElementById("modal__containerCreate");
+const cancelBtnModal = document.getElementById("form__cancelBtn");
 const modalInfo = document.getElementById("modal__containerInfo");
-
 
 const getWeeksDays = (parentElement, locale) => {
   const weekDays = [...Array(7).keys()];
   const intlWeekDays = new Intl.DateTimeFormat(locale, {
-    weekday: "long"
+    weekday: "long",
   });
 
   weekDays.forEach((weekDay) => {
@@ -68,9 +66,7 @@ const getFirstDayOfMonth = (year, numberOfMonths) => {
   });
 };
 
-
 const setDays2 = (parentElement, numbersOfDays) => {
-
   const cellDayTemplate = document.getElementById("template").content;
   let cellNumber = cellDayTemplate.querySelector(".cell__calendar_day");
   const fragment = document.createDocumentFragment();
@@ -87,11 +83,12 @@ const setDays2 = (parentElement, numbersOfDays) => {
     fragment.appendChild(clone);
   });
   parentElement.appendChild(fragment);
-
 };
 
 function openForm(e) {
-  const day = parseInt(e.target.parentNode.firstElementChild.lastElementChild.textContent);
+  const day = parseInt(
+    e.target.parentNode.firstElementChild.lastElementChild.textContent
+  );
   let month = e.target.parentNode.parentNode.parentNode.getAttribute("name");
   const year = e.target.parentNode.parentNode.parentNode.getAttribute("year");
 
@@ -102,18 +99,23 @@ function openForm(e) {
   formEvent.elements['end__date'].value = date.toISOString().substring(0,10);
   formEvent.elements['end__time'].value = "00:00"
   modal.classList.toggle("hide");
-  formEvent.parentElement.classList.toggle("hide");
-  
+  // formEvent.parentElement.classList.toggle("hide");
 }
 
-// modal.addEventListener("click", () => {
-//   modal.classList.toggle("hide");
-//   formEvent.parentElement.classList.toggle("hide");
-// });
+modal.addEventListener("click", (e) => {
+  if (e.target.id === "modal__containerCreate") {
+    modal.classList.toggle("hide");
+    console.log("modal");
+  } else if (e.target.id === "form__cancelBtn") {
+    e.preventDefault();
+    modal.classList.toggle("hide");
+    console.log("button");
+  } else if (e.target.id === "form__saveBtn") {
+    e.preventDefault();
+    console.log("save");
+  }
 
-export {
-  getWeeksDays,
-  getCurrentDate,
-  getFirstDayOfMonth,
-  setDays2
-};
+  console.log(e);
+});
+
+export { getWeeksDays, getCurrentDate, getFirstDayOfMonth, setDays2 };
