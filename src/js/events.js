@@ -1,4 +1,4 @@
-class Event {
+export class Event {
 
     constructor(title, description, initDate, existsEndDate, endDate, reminder, reminderTime, type) {
         this.title = title;
@@ -9,7 +9,6 @@ class Event {
         this.reminderTime = reminderTime;
         this.type = type;
         this.finnished = false;
-        //this.form= form;
     }
 
     setFinnished(value) {
@@ -25,27 +24,29 @@ class Event {
     }
 
     checkRequiredInputs() {
-        if (this.title == "" || this.title == null || this.initDate == "" || this.initDate == null) {
-            return false;
-        };
-        return true;
+        if (this.title == "" || this.title == null) {
+            return true;
+        } 
     }
 
-    checkTitle() {
-        if (this.title.lenght > 60) {
-            return false;
+    //Less than 60 characters
+    checkTitle(num) {
+        if (num > 60) {
+            return true;
         }
     }
 
+    //Init date is in the current month
     checkInitDate() {
-        if (new Date().getMonth !== this.initDate.getMonth) {
-            return false;
+        if (((new Date()).getMonth() !== this.initDate.getMonth()) || new Date() >= this.initDate) {
+            return true;
         }
     }
 
+    //End date is greater than init date
     checkEndDate() {
         if (this.initDate.getTime() > this.endDate.getTime()) {
-            return false;
+            return true;
         }
     }
 
@@ -55,11 +56,11 @@ class Event {
 
     errorMessages(name) {
         switch (name) {
-            case this.title:
+            case "title":
                 return 'Title max lenght is 60 characters.';
-            case this.initDate:
-                return 'Initial date must be selected in the current month.';
-            case this.endDate:
+            case "initDate":
+                return 'Initial date must be in the current month or greater than the current day.';
+            case "endDate":
                 return 'End date must be greater than initial date.';
             default:
                 break;

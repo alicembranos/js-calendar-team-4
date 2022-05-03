@@ -98,15 +98,18 @@ function openForm(e) {
   month = month.charAt(0).toUpperCase() + month.slice(1);
   const date = new Date(`${month} ${day+1}, ${year}`);
   formEvent.elements['initial__date'].value = date.toISOString().substring(0,10);
+  formEvent.elements['initial__time'].value = "00:00"
+  formEvent.elements['end__date'].value = date.toISOString().substring(0,10);
+  formEvent.elements['end__time'].value = "00:00"
   modal.classList.toggle("hide");
   formEvent.parentElement.classList.toggle("hide");
   
 }
 
-modal.addEventListener("click", () => {
-  modal.classList.toggle("hide");
-  formEvent.parentElement.classList.toggle("hide");
-});
+// modal.addEventListener("click", () => {
+//   modal.classList.toggle("hide");
+//   formEvent.parentElement.classList.toggle("hide");
+// });
 
 export {
   getWeeksDays,
