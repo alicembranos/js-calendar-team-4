@@ -52,4 +52,4 @@ const createEventList = (parent, title, time) => {
   parent.appendChild(list);
 };
 
-export { saveEvents, getEventsFromLocalStorage };
+export { saveEvents, getEventsFromLocalStorage, createEventList };
