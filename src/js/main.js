@@ -4,16 +4,13 @@ import {
   getFirstDayOfMonth,
   setDays2,
 } from "./utils.js";
-import {
-  nextMonth,
-  previousMonth
-} from "./calendarController.js";
-
+import { nextMonth, previousMonth } from "./calendarController.js";
+import { getEventsFromLocalStorage } from "./localstorage.js";
 
 const main = document.querySelector("main");
 
 const year = 2022;
-const locale = "es";
+const locale = "us";
 const numberOfMonths = [...Array(12).keys()];
 const nextBtn = document.getElementById("next-arrow");
 const previousBtn = document.getElementById("back-arrow");
@@ -81,6 +78,7 @@ const buildCalendar = (calendar) => {
 buildCalendar(newCalendar);
 getCurrentDate(locale);
 getFirstDayOfMonth(year, numberOfMonths);
+getEventsFromLocalStorage(year);
 
 // nextBtn.addEventListener("click", () => {
 //   const currentMonth = document.querySelector('[currentmonth="current"]');
@@ -92,6 +90,4 @@ getFirstDayOfMonth(year, numberOfMonths);
 //   previousMonth(currentMonth);
 // });
 
-export {
-  formEvent
-};
+export { formEvent };
