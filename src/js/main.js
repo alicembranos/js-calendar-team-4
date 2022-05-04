@@ -63,7 +63,7 @@ const buildCalendar = (calendar) => {
         daysContainer.classList.add("days__container");
         monthElement.classList.add("calendar");
         monthElement.classList.add("hide");
-        monthElement.setAttribute("name", month.nameOfMonth);
+        monthElement.setAttribute("data-month", month.nameOfMonth);
         monthElement.setAttribute("year", month.year);
         monthName.textContent = month.nameOfMonth.toUpperCase();
 
@@ -76,9 +76,9 @@ const buildCalendar = (calendar) => {
 };
 
 buildCalendar(newCalendar);
-getCurrentDate(locale);
 getFirstDayOfMonth(year, numberOfMonths);
-getEventsFromLocalStorage(year);
+let arrayLocaStorageYear = getEventsFromLocalStorage(year);
+getCurrentDate(locale);
 
 // nextBtn.addEventListener("click", () => {
 //   const currentMonth = document.querySelector('[currentmonth="current"]');
@@ -90,4 +90,4 @@ getEventsFromLocalStorage(year);
 //   previousMonth(currentMonth);
 // });
 
-export { formEvent };
+export { formEvent, arrayLocaStorageYear, year };

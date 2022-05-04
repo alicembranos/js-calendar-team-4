@@ -1,13 +1,20 @@
-import { formEvent } from "./main.js";
+import {
+  formEvent
+} from "./main.js";
 
-import { Event } from "./events.js";
+import {
+  Event
+} from "./events.js";
 
-import { saveEvents } from "./localstorage.js";
+import {
+  saveEvents
+} from "./localstorage.js";
 
 function submitEventForm(e) {
   e.preventDefault();
   const title = formEvent.elements["title"];
   const endDateCheck = formEvent.elements["checkbox__endDate"];
+
   const reminderCheck = formEvent.elements["checkbox__reminder"];
   const reminder = formEvent.elements["select__reminder"];
   const description = formEvent.elements["description"];
@@ -27,9 +34,9 @@ function submitEventForm(e) {
     title.value,
     description.value,
     initDate,
-    endDateCheck,
+    endDateCheck.checked,
     endDate,
-    reminderCheck,
+    reminderCheck.checked,
     reminder.value,
     type.value
   );
@@ -48,7 +55,6 @@ function submitEventForm(e) {
 
   //Validate Initial Date
   if (newEvent.checkInitDate()) {
-    console.log("entra");
     addErrorMessage(initialLabel, newEvent.errorMessages("initDate"));
   } else {
     removeErrorMessage(initialLabel);
@@ -72,57 +78,66 @@ function submitEventForm(e) {
 
     if (endDateCheck.checked) {
       saveEvents(year, month, day, newEvent, numOfDays);
+
     } else {
       saveEvents(year, month, day, newEvent);
     }
   }
+}
 
-  //Add div error message
-  function addErrorMessage(input, message) {
-    if (hasErrorMessage(input)) {
-      input.nextElementSibling.firstElementChild.textContent = message;
-    } else {
-      input.classList.add("invalid");
-      const error = createErrorMessage(message);
-      input.insertAdjacentElement("afterend", error);
-    }
-  }
 
-  //Remove div error message
-  function removeErrorMessage(input) {
-    if (hasErrorMessage(input)) {
-      input.classList.remove("invalid");
-      input.nextElementSibling.remove();
-    }
-  }
 
-  //Check if input has error message
-  function hasErrorMessage(input) {
-    return input.classList.contains("invalid");
-  }
-
-  //Check if form has error messages
-  function hasErrorMessages(form) {
-    return form.getElementsByClassName("invalid").length > 0;
-  }
-
-  //Create div error
-  function createErrorMessage(message) {
-    let div = document.createElement("div");
-    let p = document.createElement("p");
-    div.classList.add("error-message");
-    p.textContent = message;
-    div.appendChild(p);
-    return div;
-  }
-
-  function resetForm() {
-    formEvent.querySelector('label[for="end"]').classList.add("hide");
-    formEvent.querySelector("select__reminder]").classList.add("hide");
-    formEvent.reset();
-    const invalidInputs = formEvent.querySelector(".invalid");
-    invalidInputs.forEach(removeErrorMessage);
+//Add div error message
+function addErrorMessage(input, message) {
+  if (hasErrorMessage(input)) {
+    input.nextElementSibling.firstElementChild.textContent = message;
+  } else {
+    input.classList.add("invalid");
+    const error = createErrorMessage(message);
+    input.insertAdjacentElement("afterend", error);
   }
 }
 
-export { submitEventForm };
+//Remove div error message
+function removeErrorMessage(input) {
+  if (hasErrorMessage(input)) {
+    input.classList.remove("invalid");
+    input.nextElementSibling.remove();
+  }
+}
+
+//Check if input has error message
+function hasErrorMessage(input) {
+  return input.classList.contains("invalid");
+}
+
+//Check if form has error messages
+function hasErrorMessages(form) {
+  return form.getElementsByClassName("invalid").length > 0;
+}
+
+//Create div error
+function createErrorMessage(message) {
+  let div = document.createElement("div");
+  let p = document.createElement("p");
+  div.classList.add("error-message");
+  p.textContent = message;
+  div.appendChild(p);
+  return div;
+}
+
+function resetForm() {
+
+  formEvent.querySelector('label[for="end"]').classList.add("hide");
+  formEvent.querySelector('[name="select__reminder"]').classList.add("hide");
+  formEvent.reset();
+  const invalidInputs = formEvent.querySelectorAll(".invalid");
+  if (invalidInputs.length > 1) {
+    invalidInputs.forEach(removeErrorMessage);
+  }
+
+}
+
+export {
+  submitEventForm, resetForm
+};

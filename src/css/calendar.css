@@ -26,3 +26,8 @@
     width: 20px;
     border-radius: 5px;
 }
+
+.event-done-list {
+    text-decoration: line-through;
+    opacity: 0.7;
+}

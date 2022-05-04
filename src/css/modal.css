@@ -21,6 +21,17 @@
     /* pointer-events: none; */
 }
 
+.modal__infoEvent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem;
+    background-color: #f9f9f9;
+    padding: 1rem 3rem;
+    color: black;
+    border-radius: 0.5rem;
+}
+
 .modal__col {
     display: flex;
     flex-direction: column;
