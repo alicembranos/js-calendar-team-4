@@ -18,7 +18,7 @@ const saveEvents = (year, month, day, event, duration = 0) => {
 
 const getEventsFromLocalStorage = (year) => {
   let localStorgeEvents = JSON.parse(localStorage.getItem(`data-${year}`));
-  const monthArray = document.querySelectorAll("[year='2022']");
+  const monthArray = document.querySelectorAll(`[year = "${year}"]`);
 
   monthArray.forEach((month, index) => {
     let events = localStorgeEvents.find(
