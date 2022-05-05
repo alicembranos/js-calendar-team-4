@@ -1,16 +1,6 @@
-import {
-  formEvent,
-  arrayLocaStorageYear,
-  year
-} from "./main.js";
-import {
-  submitEventForm,
-  resetForm
-} from "./validation.js";
-import {
-  createEventList,
-  getEventsFromLocalStorage
-} from "./localstorage.js";
+import { formEvent, arrayLocaStorageYear, year } from "./main.js";
+import { submitEventForm, resetForm } from "./validation.js";
+import { createEventList, getEventsFromLocalStorage } from "./localstorage.js";
 
 const modal = document.getElementById("modal__containerCreate");
 const modalEventInfo = document.getElementById("modal__containerInfo");
@@ -36,7 +26,6 @@ const getWeeksDays = (parentElement, locale) => {
     parentElement.appendChild(weekDayElement);
   });
 };
-
 
 const getCurrentDate = (locale) => {
   const intl = new Intl.DateTimeFormat(locale, {
@@ -69,72 +58,78 @@ const getCurrentDate = (locale) => {
         if (dayEvent.number.toString() == day.textContent) {
           dayEvent.events.forEach((ev, index) => {
             if (ev.reminder) {
-              setReminder(ev, year, listEvents[index])
+              setReminder(ev, year, listEvents[index]);
             }
           });
         }
       });
-      day.parentElement.parentElement.setAttribute('data-currentday', true);
+      day.parentElement.parentElement.setAttribute("data-currentday", true);
     }
 
-    day.addEventListener('click', (e) => {
+    day.addEventListener("click", (e) => {
       displayDayCard(e.target);
-    })
+    });
   });
 };
 
 //Display info of selected date in day card
 function displayDayCard(e) {
-  const currentDayAside = document.getElementById('dayCard__h1');
-  const eventList = document.getElementById('dayCard__ul');
-  const calendarEventList = e.parentElement.parentElement.querySelectorAll('[data-id]');
+  const currentDayAside = document.getElementById("dayCard__h1");
+  const eventList = document.getElementById("dayCard__ul");
+  const calendarEventList =
+    e.parentElement.parentElement.querySelectorAll("[data-id]");
   const currentDay = e.textContent;
   const regularNumbers = ordinaryNumbers(currentDay);
-  const currentMonth = e.parentElement.parentElement.parentElement.parentElement.getAttribute('data-month');
+  const currentMonth =
+    e.parentElement.parentElement.parentElement.parentElement.getAttribute(
+      "data-month"
+    );
   currentDayAside.textContent = `${regularNumbers} ${currentMonth}`;
 
   eventList.textContent = ""; //reset list content
   if (calendarEventList.length > 0) {
-
     calendarEventList.forEach((eventli) => {
       const arrayOfEvents = getEventsFromLocalStorage(year);
-      const objectMonth = arrayOfEvents.find(item => (item.nameOfMonth) == currentMonth);
-      const objectDay = objectMonth.days.find(day => day.number == currentDay);
-      const eventSelected = objectDay.events.find(event => new Date(event.initDate).getTime() == eventli.getAttribute("data-id"));
+      const objectMonth = arrayOfEvents.find(
+        (item) => item.nameOfMonth == currentMonth
+      );
+      const objectDay = objectMonth.days.find(
+        (day) => day.number == currentDay
+      );
+      const eventSelected = objectDay.events.find(
+        (event) =>
+          new Date(event.initDate).getTime() == eventli.getAttribute("data-id")
+      );
       createEventList(eventList, eventSelected);
     });
   }
-
 }
 
 //Update day card with current date on load
-function onLoadCurrentCard(){
+function onLoadCurrentCard() {
   const currentDateCell = document.querySelector('[data-currentday="true"]');
   displayDayCard(currentDateCell.firstElementChild.lastElementChild);
 }
 
 function ordinaryNumbers(number) {
-  if (number === '1' || number === '21' || number === '31') {
-    return `${number}st`
-
-  } else if (number === '2' || number === '22') {
-    return `${number}nd`
-
-  } else if (number === '3') {
-    return `${number}rd`
-
+  if (number === "1" || number === "21" || number === "31") {
+    return `${number}st`;
+  } else if (number === "2" || number === "22") {
+    return `${number}nd`;
+  } else if (number === "3") {
+    return `${number}rd`;
   } else {
-    return `${number}th`
+    return `${number}th`;
   }
 }
 
 const getFirstDayOfMonth = (year, numberOfMonths) => {
-  const months = document.querySelectorAll("[data-month]");
+  const currentMonths = document.querySelectorAll(`[year = "${year}"]`);
 
   numberOfMonths.forEach((number) => {
     const startOn = new Date(year, number, 0).getDay();
 
-    let currentMonth = months[number].querySelectorAll("[value]");
+    let currentMonth = currentMonths[number].querySelectorAll("[value]");
 
     currentMonth.forEach((day) => {
       if (day.textContent === "1") {
@@ -170,7 +165,8 @@ function openForm(e) {
   const day = parseInt(
     e.target.parentNode.firstElementChild.lastElementChild.textContent
   );
-  let month = e.target.parentNode.parentNode.parentNode.getAttribute("data-month");
+  let month =
+    e.target.parentNode.parentNode.parentNode.getAttribute("data-month");
   const year = e.target.parentNode.parentNode.parentNode.getAttribute("year");
 
   month = month.charAt(0).toUpperCase() + month.slice(1);
@@ -209,7 +205,6 @@ modal.addEventListener("click", (e) => {
 
 //Add click listener to all li over the calendar cells
 function addClickListenertoEvent(element, event, year) {
-
   element.addEventListener("click", () => {
     if (event.finnished) {
       element.classList.add("event-done-list");
@@ -218,10 +213,14 @@ function addClickListenertoEvent(element, event, year) {
       doneEventUpdate("");
     }
     document.getElementById("modal__info").textContent = event.title;
-    document.getElementById("modal__initalDate").textContent = formatDate(event.initDate);
-    document.getElementById("modal__endDate").textContent = (event.endDate !== null ? formatDate(event.endDate) : "");
+    document.getElementById("modal__initalDate").textContent = formatDate(
+      event.initDate
+    );
+    document.getElementById("modal__endDate").textContent =
+      event.endDate !== null ? formatDate(event.endDate) : "";
     document.getElementById("modal__eventType").textContent = event.type;
-    document.getElementById("modal__description").textContent = event.description;
+    document.getElementById("modal__description").textContent =
+      event.description;
 
     const doneButton = document.getElementById("modal__doneBtn");
 
@@ -231,7 +230,7 @@ function addClickListenertoEvent(element, event, year) {
       if (event.reminder) {
         clearTimeout(event.intervalIDstart);
         clearTimeout(event.intervalIDend);
-      };
+      }
     });
 
     modalEventInfo.classList.toggle("hide");
@@ -242,18 +241,18 @@ function addClickListenertoEvent(element, event, year) {
 //Update Headline From Event Info Modal
 function doneEventUpdate(textInfo) {
   const h2DoneInfo = document.getElementById("modal__info__state");
-  h2DoneInfo.textContent = textInfo
+  h2DoneInfo.textContent = textInfo;
 }
 
 //Format date to locale format
 function formatDate(date) {
   const dateConstructor = new Date(date);
   return dateConstructor.toLocaleTimeString("en-US", {
-    day: 'numeric', // numeric, 2-digit
-    year: 'numeric', // numeric, 2-digit
-    month: 'long', // numeric, 2-digit, long, short, narrow
-    hour: 'numeric', // numeric, 2-digit
-    minute: 'numeric',
+    day: "numeric", // numeric, 2-digit
+    year: "numeric", // numeric, 2-digit
+    month: "long", // numeric, 2-digit, long, short, narrow
+    hour: "numeric", // numeric, 2-digit
+    minute: "numeric",
   });
 }
 
@@ -266,19 +265,20 @@ modalEventInfo.addEventListener("click", (e) => {
     modalEventInfo.classList.toggle("hide");
     eventInfo.classList.toggle("hide");
   } else if (e.target.id === "modal__doneBtn") {
-
   }
 });
 
 //Set up reminder for events
 function setReminder(event, year) {
-
   const currentTime = new Date().getTime();
   const initialDate = new Date(formatDate(event.initDate)).getTime();
-  const timeToTimoutReminder = (initialDate - currentTime) - (event.reminderTime * 60000);
+  const timeToTimoutReminder =
+    initialDate - currentTime - event.reminderTime * 60000;
   const timeToTimeoutEnd = initialDate - currentTime;
 
-  let liFilterElement = document.querySelector(`[data-id="${new Date(event.initDate).getTime()}"]`);
+  let liFilterElement = document.querySelector(
+    `[data-id="${new Date(event.initDate).getTime()}"]`
+  );
 
   if (new Date().getTime() >= initialDate) {
     event.finnished = true;
@@ -303,9 +303,7 @@ function setReminder(event, year) {
       clip.play();
     }, timeToTimeoutEnd);
   }
-
 }
-
 
 //Update event finnished
 function updateEventDone(event, year, li) {
@@ -316,14 +314,17 @@ function updateEventDone(event, year, li) {
 
 //Save array lo localstorage
 const saveToLocalStorage = (year) => {
-  localStorage.setItem((`data-${year}`), JSON.stringify(arrayLocaStorageYear));
-}
+  localStorage.setItem(`data-${year}`, JSON.stringify(arrayLocaStorageYear));
+};
 
 //Display event info modal window
 function displayEventInfoModal(element, event) {
   document.getElementById("modal__info").textContent = event.title;
-  document.getElementById("modal__initalDate").textContent = formatDate(event.initDate);
-  document.getElementById("modal__endDate").textContent = (event.endDate !== null ? formatDate(event.endDate) : "")
+  document.getElementById("modal__initalDate").textContent = formatDate(
+    event.initDate
+  );
+  document.getElementById("modal__endDate").textContent =
+    event.endDate !== null ? formatDate(event.endDate) : "";
   document.getElementById("modal__eventType").textContent = event.type;
   document.getElementById("modal__description").textContent = event.description;
 
@@ -333,7 +334,7 @@ function displayEventInfoModal(element, event) {
     event.finnished = true;
     element.classList.add("event-done-list");
     doneEventUpdate("Event finnished.");
-    saveToLocalStorage(year)
+    saveToLocalStorage(year);
     if (event.remind); //TODO clear interval
   });
 
@@ -350,5 +351,5 @@ export {
   setReminder,
   formatDate,
   modal,
-  onLoadCurrentCard
+  onLoadCurrentCard,
 };
