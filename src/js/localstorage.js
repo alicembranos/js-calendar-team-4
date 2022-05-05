@@ -1,8 +1,13 @@
-import { addClickListenertoEvent, formatDate, setReminder } from "./utils.js";
-import { year } from "./main.js";
+import {
+  addClickListenertoEvent,
+  formatDate,
+  setReminder
+} from "./utils.js";
+import {
+  year
+} from "./main.js";
 
-const eventsColor = [
-  {
+const eventsColor = [{
     type: "Meeting",
     color: "#DFF4E6",
   },
@@ -59,6 +64,7 @@ const getEventsFromLocalStorage = (year) => {
       while (cell.children.length >= 1) {
         cell.removeChild(cell.lastChild);
       }
+      orderList(events.days[i].events);
       events.days[i].events.forEach((event) => {
         createEventList(cell, event);
       });
@@ -96,6 +102,14 @@ const createEventList = (parent, event) => {
   parent.appendChild(list);
 };
 
+function orderList(array) {
+  array.sort(function (obj1, obj2) {
+    let date1 = new Date(obj1.initDate).getTime();
+    let date2 = new Date(obj2.initDate).getTime();
+    return date1 - date2;
+  });
+}
+
 //Give style to events list item depending on type of meeting
 function styleBackgroundEvent(li, type) {
   const colorMeeting = eventsColor
@@ -104,4 +118,8 @@ function styleBackgroundEvent(li, type) {
   li.style.backgroundColor = colorMeeting;
 }
 
-export { saveEvents, getEventsFromLocalStorage, createEventList };
+export {
+  saveEvents,
+  getEventsFromLocalStorage,
+  createEventList
+};
