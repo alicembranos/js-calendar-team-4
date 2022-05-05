@@ -40,6 +40,10 @@ main {
     background-color: var(--secondary-color);
 }
 
+.dayCard {
+    width: 20rem;
+}
+
 .hide {
     display: none;
 }

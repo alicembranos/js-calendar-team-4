@@ -1,6 +1,5 @@
 // const year = 2022;
 const locale = 'us'
-
 const numberOfMonths = [...Array(12).keys()]
 
 const calendar = (year) => {
@@ -34,3 +33,34 @@ const calendar = (year) => {
 }
 
 
+function createMiniCalendar() {
+    const miniCalendarContainer = document.getElementById("dayCard-calendar__div");
+    const mainCalendar = document.getElementById("mainCalendar").cloneNode(true);
+    miniCalendarContainer.appendChild(mainCalendar);
+
+    const allUlElements = miniCalendarContainer.querySelectorAll(".cell__calendar-events");
+    const allPencils = miniCalendarContainer.querySelectorAll(".pencil-create");
+    const ulHeaderCell = miniCalendarContainer.querySelectorAll(".cell__calendar_eventType");
+    const headerCell = miniCalendarContainer.querySelectorAll(".dayCard-calendar__div .mainCalendar .calendar>h2");
+    const weekdays = miniCalendarContainer.querySelectorAll(".dayCard-calendar__div .days__container");
+
+    allUlElements.forEach((el) => {
+        el.remove();
+    });
+
+    allPencils.forEach((el) => {
+        el.remove();
+    });
+
+    ulHeaderCell.forEach((el) => {
+        el.remove();
+    });
+
+    headerCell.forEach((el) => {
+        el.remove();
+    });
+}
+
+export {
+    createMiniCalendar
+};

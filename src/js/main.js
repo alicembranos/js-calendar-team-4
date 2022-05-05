@@ -7,7 +7,7 @@ import {
 } from "./utils.js";
 import { nextMonth, previousMonth } from "./calendarController.js";
 import { getEventsFromLocalStorage } from "./localstorage.js";
-
+import {createMiniCalendar} from "./calendar.js";
 const main = document.querySelector("main");
 
 const year = 2022;
@@ -80,8 +80,9 @@ buildCalendar(newCalendar);
 getFirstDayOfMonth(year, numberOfMonths);
 let arrayLocaStorageYear = getEventsFromLocalStorage(year);
 getCurrentDate(locale);
-
 onLoadCurrentCard();
+
+createMiniCalendar();
 // nextBtn.addEventListener("click", () => {
 //   const currentMonth = document.querySelector('[currentmonth="current"]');
 //   nextMonth(currentMonth);
