@@ -1,6 +1,6 @@
 import { formEvent } from "./main.js";
 import { submitEventForm } from "./validation.js";
-import {createEventList} from "./localstorage.js";
+import { createEventList } from "./localstorage.js";
 
 const modal = document.getElementById("modal__containerCreate");
 const cancelBtnModal = document.getElementById("form__cancelBtn");
@@ -45,56 +45,57 @@ const getCurrentDate = (locale) => {
   Array.from(dayElements).forEach((day) => {
     if (day.textContent === currentDay.toString()) {
       day.classList.add("currentDay__p");
-      day.parentElement.parentElement.setAttribute('data-currentday', true);
+      day.parentElement.parentElement.setAttribute("data-currentday", true);
     }
-    day.parentElement.parentElement.addEventListener('click', (e) => {
-      if (e.target.matches('.cell__calendar') || e.target.matches('.cell__calendar-day')){
-        displayDayCard(e)
+    day.parentElement.parentElement.addEventListener("click", (e) => {
+      if (
+        e.target.matches(".cell__calendar") ||
+        e.target.matches(".cell__calendar-day")
+      ) {
+        displayDayCard(e);
       }
-    })
+    });
   });
 };
 
 function displayDayCard(e) {
-  const currentDayAside = document.getElementById('dayCard__h1');
-  const eventList = document.getElementById('dayCard__ul');
-  const calendarEventList = e.target.querySelectorAll('li');
-  const currentDay = e.target.querySelector('[value]');
-  const regularNumbers = ordinaryNumbers(currentDay.textContent)
-  const currentMonth = e.target.parentElement.parentElement.getAttribute('name');
-  currentDayAside.textContent = `${regularNumbers} ${currentMonth}`
+  const currentDayAside = document.getElementById("dayCard__h1");
+  const eventList = document.getElementById("dayCard__ul");
+  const calendarEventList = e.target.querySelectorAll("li");
+  const currentDay = e.target.querySelector("[value]");
+  const regularNumbers = ordinaryNumbers(currentDay.textContent);
+  const currentMonth =
+    e.target.parentElement.parentElement.getAttribute("name");
+  currentDayAside.textContent = `${regularNumbers} ${currentMonth}`;
 
-  if (calendarEventList.length > 0){
+  if (calendarEventList.length > 0) {
     calendarEventList.forEach((event) => {
       const eventTitle = event.textContent.substring(8).trim();
-      const eventTime = event.textContent.substring(0,8).trim();
+      const eventTime = event.textContent.substring(0, 8).trim();
       createEventList(eventList, eventTitle, eventTime);
-    })
+    });
   }
 }
 
 function ordinaryNumbers(number) {
-  if (number === '1' || number === '21' || number === '31') {
-    return `${number}st`
-
-  }else if (number === '2' || number === '22') {
-    return `${number}nd`
-
-  }else if (number === '3') {
-    return `${number}rd`
-
-  }else {
-    return `${number}th`
+  if (number === "1" || number === "21" || number === "31") {
+    return `${number}st`;
+  } else if (number === "2" || number === "22") {
+    return `${number}nd`;
+  } else if (number === "3") {
+    return `${number}rd`;
+  } else {
+    return `${number}th`;
   }
 }
 
 const getFirstDayOfMonth = (year, numberOfMonths) => {
-  const months = document.querySelectorAll("[name]");
+  const currentMonths = document.querySelectorAll(`[year = "${year}"]`);
 
   numberOfMonths.forEach((number) => {
     const startOn = new Date(year, number, 0).getDay();
 
-    let currentMonth = months[number + 1].querySelectorAll("[value]");
+    let currentMonth = currentMonths[number].querySelectorAll("[value]");
 
     currentMonth.forEach((day) => {
       if (day.textContent === "1") {
