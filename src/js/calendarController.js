@@ -1,34 +1,40 @@
 import {
-  year,
   calendar,
   buildCalendar,
   numberOfMonths,
-  getFirstDayOfMonth,
   buildPreviousCalendar,
+  createMiniCalendar,
 } from "./main.js";
 
-let numberOfYears = 0;
-
 const nextMonth = (currentMonth) => {
+  let numberOfYears = 0;
   if (currentMonth.nextElementSibling) {
     nextNavigation(currentMonth);
   } else {
-    numberOfYears++;
-    const nextYear = calendar(year + numberOfYears);
-    buildCalendar(nextYear);
-    getFirstDayOfMonth(year + numberOfYears, numberOfMonths);
+    numberOfYears = currentMonth.getAttribute("year");
+    const nextYear = calendar(parseInt(numberOfYears) + 1);
+
+    buildCalendar(nextYear, parseInt(numberOfYears) + 1, numberOfMonths);
+    createMiniCalendar(parseInt(numberOfYears) + 1);
     nextNavigation(currentMonth);
   }
 };
 
 const previousMonth = (currentMonth) => {
+  let numberOfYears = 0;
+
   if (currentMonth.previousElementSibling) {
     previousNavigation(currentMonth);
   } else {
-    numberOfYears--;
-    const previousYear = calendar(year + numberOfYears);
-    buildPreviousCalendar(previousYear);
-    getFirstDayOfMonth(year + numberOfYears, numberOfMonths);
+    numberOfYears = currentMonth.getAttribute("year");
+    const previousYear = calendar(parseInt(numberOfYears) - 1);
+
+    buildPreviousCalendar(
+      previousYear,
+      parseInt(numberOfYears) + 1,
+      numberOfMonths
+    );
+    createMiniCalendar(parseInt(numberOfYears) + 1, true);
     previousNavigation(currentMonth);
   }
 };
