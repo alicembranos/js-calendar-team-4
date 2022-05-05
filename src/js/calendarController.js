@@ -4,6 +4,7 @@ import {
   buildCalendar,
   numberOfMonths,
   getFirstDayOfMonth,
+  buildPreviousCalendar,
 } from "./main.js";
 
 let numberOfYears = 0;
@@ -24,7 +25,11 @@ const previousMonth = (currentMonth) => {
   if (currentMonth.previousElementSibling) {
     previousNavigation(currentMonth);
   } else {
-    let parent = currentMonth.parentNode;
+    numberOfYears--;
+    const previousYear = calendar(year + numberOfYears);
+    buildPreviousCalendar(previousYear);
+    getFirstDayOfMonth(year + numberOfYears, numberOfMonths);
+    previousNavigation(currentMonth);
   }
 };
 
