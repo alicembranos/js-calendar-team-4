@@ -3,6 +3,7 @@ import {
     getCurrentDate,
     getFirstDayOfMonth,
     setDays2,
+    onLoadCurrentCard
 } from "./utils.js";
 import { nextMonth, previousMonth } from "./calendarController.js";
 import { getEventsFromLocalStorage } from "./localstorage.js";
@@ -10,7 +11,7 @@ import { getEventsFromLocalStorage } from "./localstorage.js";
 const main = document.querySelector("main");
 
 const year = 2022;
-const locale = "es";
+const locale = "en-us";
 const numberOfMonths = [...Array(12).keys()];
 const nextBtn = document.getElementById("next-arrow");
 const previousBtn = document.getElementById("back-arrow");
@@ -80,6 +81,7 @@ getFirstDayOfMonth(year, numberOfMonths);
 let arrayLocaStorageYear = getEventsFromLocalStorage(year);
 getCurrentDate(locale);
 
+onLoadCurrentCard();
 // nextBtn.addEventListener("click", () => {
 //   const currentMonth = document.querySelector('[currentmonth="current"]');
 //   nextMonth(currentMonth);

@@ -56,8 +56,10 @@
 }
 
 .cell__calendar-events {
+    display: block;
     height: 55%;
     list-style-type: none;
+    overflow: hidden;
 }
 
 .currentDay__p{
@@ -82,6 +84,19 @@
 .cell__calendar_day {
     margin-top: 0.2rem;
     cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+}
+
+.eventItem__li--style{
+    overflow: hidden;
+    font-size: 0.7rem;
+    border-radius: 2px;
+}
+
+.eventItem__span--style {
+    padding-left: 0.2rem;
+    display: inline-block;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .pencil-create {
