@@ -1,14 +1,49 @@
 .dayCard{
     display: flex;
     flex-direction: column;
-    border: 1px solid white;
     width: 20%;
     padding: 0.7rem;
 }
 
-.dayCard__h1 {
-    font-size: 1.3rem;
+.dayCard__nextButton {
+    border: none;
+    padding-top: 0.3rem;
+    background-color: transparent;
     color: var(--quaternary-color);
+    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+}
+
+.dayCard__nextButton:hover {
+    color: #ffd69e;
+}
+
+.dayCard__previousButton {
+    border: none;
+    padding-top: 0.3rem;
+    background-color: transparent;
+    color: var(--quaternary-color);
+    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+}
+
+.dayCard__previousButton:hover {
+    color: #ffd69e;  
+}
+
+.dayCard__dropdownButton {
+    display: none;
+    border: none;
+    padding-top: 0.3rem;
+    background-color: transparent;
+    color: var(--quaternary-color);
+}
+
+.dayCard__h1 {
+    font-size: 1.4rem;
+    color: var(--quaternary-color);
+}
+
+.dayCard__addEventButton {
+    display: none;
 }
 
 .dayCard__header{
@@ -23,9 +58,11 @@
     border-radius: 7px;
 }
 .dayCard__ul{
-    /* border: 1px solid white; */
     height: 80%;
+    padding: 0.6rem;
     overflow: hidden;
     border-radius: 7px;
     background-color: var(--primary-color);
+    font-size: 0.75rem;
+    list-style-type: none;
 }

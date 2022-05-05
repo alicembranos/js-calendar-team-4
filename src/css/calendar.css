@@ -32,6 +32,24 @@
     gap: 1rem;
 }
 
+.weekDay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.weekDay:nth-child(6) {
+    font-weight: 600;
+    color: #2887b3;
+}
+
+.weekDay:nth-child(7) {
+    font-weight: 600;
+    color: #2887b3;
+}
+
 .cell__calendar-header{
     display: flex;
     justify-content: flex-end;
@@ -48,14 +66,13 @@
     align-items: center;
     height: 20px;
     width: 20px;
-<<<<<<< HEAD
     border-radius: 5px;
+    background-color: #369ece;
 }
 
 .event-done-list {
     text-decoration: line-through;
     opacity: 0.7;
-=======
     border-radius: 0.5rem;
     background-color: #2887b3;
     color: white;
@@ -70,5 +87,4 @@
 .pencil-create {
     cursor:url(/src/assets/images/worklog/create-pointer.cur), pointer;
     width: fit-content;
->>>>>>> develop
 }
