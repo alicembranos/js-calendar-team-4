@@ -13,6 +13,7 @@ const modalEventInfo = document.getElementById("modal__containerInfo");
 const eventInfo = document.getElementById("modal__infoEvent");
 const cancelBtnModal = document.getElementById("form__cancelBtn");
 const modalInfo = document.getElementById("modal__containerInfo");
+const clip = document.getElementById("beepEvent");
 
 const getWeeksDays = (parentElement, locale) => {
   const weekDays = [...Array(7).keys()];
@@ -70,9 +71,48 @@ const getCurrentDate = (locale) => {
           });
         }
       });
+      day.parentElement.parentElement.setAttribute('data-currentday', true);
     }
+    // day.parentElement.parentElement.addEventListener('click', (e) => {
+    //   if (e.target.matches('.cell__calendar') || e.target.matches('.cell__calendar-day')){
+    //     displayDayCard(e)
+    //   }
+    // })
   });
 };
+
+// function displayDayCard(e) {
+//   const currentDayAside = document.getElementById('dayCard__h1');
+//   const eventList = document.getElementById('dayCard__ul');
+//   const calendarEventList = e.target.querySelectorAll('li');
+//   const currentDay = e.target.querySelector('[value]');
+//   const regularNumbers = ordinaryNumbers(currentDay.textContent)
+//   const currentMonth = e.target.parentElement.parentElement.getAttribute('name');
+//   currentDayAside.textContent = `${regularNumbers} ${currentMonth}`
+
+//   if (calendarEventList.length > 0){
+//     calendarEventList.forEach((event) => {
+//       const eventTitle = event.textContent.substring(8).trim();
+//       const eventTime = event.textContent.substring(0,8).trim();
+//       createEventList(eventList, eventTitle, eventTime);
+//     })
+//   }
+// }
+
+function ordinaryNumbers(number) {
+  if (number === '1' || number === '21' || number === '31') {
+    return `${number}st`
+
+  }else if (number === '2' || number === '22') {
+    return `${number}nd`
+
+  }else if (number === '3') {
+    return `${number}rd`
+
+  }else {
+    return `${number}th`
+  }
+}
 
 const getFirstDayOfMonth = (year, numberOfMonths) => {
   const months = document.querySelectorAll("[data-month]");
@@ -244,19 +284,16 @@ function setReminder(event, year) {
       console.log("else del segundo if");
       //Reminder x minutes before the event
       event.intervalIDstart = setTimeout(() => {
-        // let i = timeToTimoutReminder;
-        // let prueba = setInterval(() => {
-        //   console.log("cuenta atras: " + i);
-        //   i--;
-        // },1000);
         displayEventInfoModal(liFilterElement, event);
         doneEventUpdate(`Less than ${event.reminderTime} minutes left!`);
+        clip.play();
       }, timeToTimoutReminder);
     }
     event.intervalIDend = setTimeout(() => {
       displayEventInfoModal(liFilterElement, event);
       doneEventUpdate(`Your event starts now!`);
       updateEventDone(event, year, liFilterElement);
+      clip.play();
     }, timeToTimeoutEnd);
   }
 

@@ -50,6 +50,12 @@ export class Event {
         }
     }
 
+    checkReminder() {
+        if(this.reminder && this.reminderTime == "") {
+            return true;
+        }
+    }
+
     requiredMessages(name) {
         return `${name} field is required.`
     }
@@ -62,6 +68,8 @@ export class Event {
                 return 'Initial date must be in the current month or greater than the current day.';
             case "endDate":
                 return 'End date must be greater than initial date.';
+            case "reminder":
+                return 'You must select a reminder time.';
             default:
                 break;
         }

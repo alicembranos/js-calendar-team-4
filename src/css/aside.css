@@ -5,6 +5,12 @@
     width: 20%;
     padding: 0.7rem;
 }
+
+.dayCard__h1 {
+    font-size: 1.3rem;
+    color: var(--quaternary-color);
+}
+
 .dayCard__header{
     display: flex;
     align-items: center;
@@ -17,8 +23,9 @@
     border-radius: 7px;
 }
 .dayCard__ul{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     height: 80%;
     overflow: hidden;
     border-radius: 7px;
+    background-color: var(--primary-color);
 }

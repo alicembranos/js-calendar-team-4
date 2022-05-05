@@ -11,6 +11,20 @@
     padding: 0 2rem;
 }
 
+.cell__calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    height: 6rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--tertiary-color);
+}
+
+.cell__calendar:hover {
+    background-color: #084c6b;
+}
+
 .days__container{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -18,16 +32,43 @@
     gap: 1rem;
 }
 
+.cell__calendar-header{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cell__calendar-events {
+    height: 55%;
+    list-style-type: none;
+}
+
 .currentDay__p{
-    background-color: #c22222;
-    text-align: center;
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 20px;
     width: 20px;
+<<<<<<< HEAD
     border-radius: 5px;
 }
 
 .event-done-list {
     text-decoration: line-through;
     opacity: 0.7;
+=======
+    border-radius: 0.5rem;
+    background-color: #2887b3;
+    color: white;
+    text-align: center;
+}
+
+.cell__calendar_day {
+    margin-top: 0.2rem;
+    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+}
+
+.pencil-create {
+    cursor:url(/src/assets/images/worklog/create-pointer.cur), pointer;
+    width: fit-content;
+>>>>>>> develop
 }

@@ -34,15 +34,17 @@ const saveEvents = (year, month, day, event, duration = 0) => {
 const getEventsFromLocalStorage = (year) => {
   let localStorgeEvents = JSON.parse(localStorage.getItem(`data-${year}`));
   const monthArray = document.querySelectorAll("[year='2022']");
-
   monthArray.forEach((month, index) => {
+
     let events = localStorgeEvents.find(
       (item) => item.nameOfMonth === month.getAttribute("data-month")
     );
+
     let ul_cell_calendars = month.querySelectorAll(".cell__calendar-events");
 
     ul_cell_calendars.forEach((cell, i) => {
-      while (cell.children.length > 1) {
+      while (cell.children.length >= 1) {
+        console.log("borras???");
         cell.removeChild(cell.lastChild);
       };
       events.days[i].events.forEach((event) => {

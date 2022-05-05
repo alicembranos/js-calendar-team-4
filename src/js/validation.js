@@ -10,7 +10,9 @@ import {
   saveEvents
 } from "./localstorage.js";
 
-import {modal} from "./utils.js";
+import {
+  modal
+} from "./utils.js";
 
 function submitEventForm(e) {
   e.preventDefault();
@@ -71,6 +73,15 @@ function submitEventForm(e) {
     }
   }
 
+  //Validate remind if exists
+  console.log(newEvent.checkReminder());
+  if (newEvent.checkReminder()) {
+    addErrorMessage(reminder, newEvent.errorMessages("reminder"));
+  } else{
+    removeErrorMessage(reminder);
+  }
+
+
   if (!hasErrorMessages(formEvent)) {
     const dateDifference = endDate.getTime() - initDate.getTime();
     const numOfDays = Math.floor(dateDifference / (24 * 60 * 60 * 1000));
@@ -86,6 +97,7 @@ function submitEventForm(e) {
     resetForm();
   }
 }
+
 
 //Add div error message
 function addErrorMessage(input, message) {
@@ -128,9 +140,9 @@ function createErrorMessage(message) {
 
 function resetForm() {
 
-  formEvent.querySelector('label[for="end"]').classList.add("hide");
-  formEvent.querySelector('[name="select__reminder"]').classList.add("hide");
-  // formEvent.reset();
+  formEvent.querySelector('label[for=end]').classList.add("hide");
+  formEvent.querySelector('label[for=select__reminder]').classList.add("hide");
+  formEvent.reset();
   const invalidInputs = formEvent.querySelectorAll(".invalid");
   if (invalidInputs.length > 1) {
     invalidInputs.forEach(removeErrorMessage);
@@ -139,5 +151,6 @@ function resetForm() {
 }
 
 export {
-  submitEventForm, resetForm
+  submitEventForm,
+  resetForm
 };
