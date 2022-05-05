@@ -50,3 +50,7 @@ main {
     color: red;
     margin-top: 0.1rem;
 }
+
+.audio_style {
+    display: none;
+}

@@ -77,9 +77,9 @@ const buildCalendar = (calendar) => {
 };
 
 buildCalendar(newCalendar);
-getCurrentDate(locale);
 getFirstDayOfMonth(year, numberOfMonths);
-getEventsFromLocalStorage(year);
+let arrayLocaStorageYear = getEventsFromLocalStorage(year);
+getCurrentDate(locale);
 
 nextBtn.addEventListener("click", () => {
   const currentMonth = document.querySelector('[currentmonth="current"]');
@@ -98,4 +98,5 @@ export {
   buildCalendar,
   numberOfMonths,
   getFirstDayOfMonth,
+  arrayLocaStorageYear,
 };
