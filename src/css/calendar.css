@@ -48,14 +48,11 @@
     align-items: center;
     height: 20px;
     width: 20px;
-<<<<<<< HEAD
-    border-radius: 5px;
-}
 
-.event-done-list {
+}
+    .event-done-list {
     text-decoration: line-through;
     opacity: 0.7;
-=======
     border-radius: 0.5rem;
     background-color: #2887b3;
     color: white;
@@ -70,5 +67,4 @@
 .pencil-create {
     cursor:url(/src/assets/images/worklog/create-pointer.cur), pointer;
     width: fit-content;
->>>>>>> develop
 }
