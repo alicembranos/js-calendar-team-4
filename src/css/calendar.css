@@ -53,7 +53,8 @@
     border-radius: 5px;
 }
 
-.event-done-list {
+
+    .event-done-list {
     text-decoration: line-through;
     opacity: 0.7;
     border-radius: 0.5rem;
