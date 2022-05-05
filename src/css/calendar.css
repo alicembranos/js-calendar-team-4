@@ -11,6 +11,11 @@
     padding: 0 2rem;
 }
 
+.calendar > h2 {
+    text-align: center;
+    color: var(--quaternary-color);
+}
+
 .cell__calendar {
     display: flex;
     flex-direction: column;
@@ -112,7 +117,10 @@
 
 .cell__calendar_day {
     margin: 0.2rem 0 0.4rem 0;
-    cursor: url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+    font-size: 1.2rem;
+    color: var(--quaternary-color);
+    cursor: pointer;
+    /* cursor: url(/src/assets/images/worklog/select-date-pointer.cur), pointer; */
 }
 
 .eventItem__li--style {
@@ -122,6 +130,10 @@
     border-radius: 2px;
     font-size: 0.7rem;
     color: var(--primary-color);
+}
+
+.eventItem__li--style{
+    cursor: pointer;
 }
 
 .eventItem__span--style {
@@ -135,13 +147,18 @@
     font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: 0.1rem;
+    color: var(--quaternary-color);
+}
+
+.weekDay:hover{
+    cursor: pointer;
+    color: antiquewhite;
+    /* background-color: var(--primary-color); */
 }
 
 .pencil-create {
-    cursor: url(/src/assets/images/worklog/create-pointer.cur), pointer;
     width: fit-content;
-}
-
-.pencil-create{
     margin: 0.2rem 0;
+    color: var(--quaternary-color);
+    cursor: url(/src/assets/images/worklog/create-pointer.cur), pointer;
 }

@@ -1,4 +1,4 @@
-.dayCard{
+.dayCard {
     display: flex;
     flex-direction: column;
     width: 20%;
@@ -10,7 +10,7 @@
     padding-top: 0.3rem;
     background-color: transparent;
     color: var(--quaternary-color);
-    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+    cursor: url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
 }
 
 .dayCard__nextButton:hover {
@@ -22,11 +22,11 @@
     padding-top: 0.3rem;
     background-color: transparent;
     color: var(--quaternary-color);
-    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+    cursor: url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
 }
 
 .dayCard__previousButton:hover {
-    color: #ffd69e;  
+    color: #ffd69e;
 }
 
 .dayCard__dropdownButton {
@@ -46,17 +46,17 @@
     display: none;
 }
 
-.dayCard__header{
+.dayCard__header {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.dayCard-calendar__div{
+.dayCard-calendar__div {
     margin: 1rem 0;
 }
 
-.dayCard__ul{
+.dayCard__ul {
     height: 80%;
     padding: 0.6rem;
     overflow: hidden;
@@ -64,13 +64,40 @@
     background-color: var(--primary-color);
     font-size: 0.75rem;
     list-style-type: none;
+    overflow-y: scroll;
+}
+
+.dayCard__ul::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.dayCard__ul::-webkit-scrollbar:vertical {
+    width: 5px;
+}
+
+.dayCard__ul::-webkit-scrollbar-button:increment,
+.dayCard__ul::-webkit-scrollbar-button {
+    display: none;
+}
+
+.dayCard__ul::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.dayCard__ul::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color);
+    border-radius: 20px;
+}
+
+.dayCard__ul::-webkit-scrollbar-track {
+    border-radius: 10px;
 }
 
 .dayCard-calendar .calendar {
     height: fit-content;
 }
 
-.dayCard-calendar__div .cell__calendar{
+.dayCard-calendar__div .cell__calendar {
     display: flex;
     flex-direction: column;
     align-items: space-between;
@@ -80,7 +107,7 @@
     background-color: var(--tertiary-color);
 }
 
-.dayCard-calendar__div .days__container{
+.dayCard-calendar__div .days__container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 0.5fr repeat(5, 1fr);
@@ -98,4 +125,8 @@
     font-size: 1rem;
     text-align: start;
     color: var(--primary-color);
+}
+
+.dayCard__ul .eventItem__li--style:hover {
+    cursor: pointer;
 }
