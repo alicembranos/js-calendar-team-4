@@ -42,7 +42,7 @@ function createMiniCalendar() {
     const allPencils = miniCalendarContainer.querySelectorAll(".pencil-create");
     const ulHeaderCell = miniCalendarContainer.querySelectorAll(".cell__calendar_eventType");
     const headerCell = miniCalendarContainer.querySelectorAll(".dayCard-calendar__div .mainCalendar .calendar>h2");
-    const weekdays = miniCalendarContainer.querySelectorAll(".dayCard-calendar__div .days__container");
+    const weekdays = miniCalendarContainer.querySelectorAll(".dayCard-calendar__div .days__container .weekDay");
 
     allUlElements.forEach((el) => {
         el.remove();
@@ -58,6 +58,10 @@ function createMiniCalendar() {
 
     headerCell.forEach((el) => {
         el.remove();
+    });
+
+    weekdays.forEach((weekDay) => {
+        weekDay.textContent = weekDay.textContent.substring(0, 3);
     });
 }
 

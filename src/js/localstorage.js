@@ -1,29 +1,23 @@
-import {
-  addClickListenertoEvent,
-  formatDate,
-  setReminder
-} from "./utils.js"
-import {
-  year
-} from "./main.js";
+import { addClickListenertoEvent, formatDate, setReminder } from "./utils.js";
+import { year } from "./main.js";
 
 const eventsColor = [
   {
     type: "Meeting",
-    color:"#DFF4E6"
+    color: "#DFF4E6",
   },
   {
     type: "Personal",
-    color:"#FFC1AD"
+    color: "#FFC1AD",
   },
   {
     type: "Study",
-    color: "#FFF68F"
+    color: "#FFF68F",
   },
   {
     type: "Tinder",
-    color: "#FF6379"
-  }
+    color: "#FF6379",
+  },
 ];
 
 const saveEvents = (year, month, day, event, duration = 0) => {
@@ -52,9 +46,9 @@ const saveEvents = (year, month, day, event, duration = 0) => {
 
 const getEventsFromLocalStorage = (year) => {
   let localStorgeEvents = JSON.parse(localStorage.getItem(`data-${year}`));
-  const monthArray = document.querySelectorAll("[year='2022']");
-  monthArray.forEach((month) => {
+  const monthArray = document.querySelectorAll(`[year = "${year}"]`);
 
+  monthArray.forEach((month) => {
     let events = localStorgeEvents.find(
       (item) => item.nameOfMonth === month.getAttribute("data-month")
     );
@@ -64,7 +58,7 @@ const getEventsFromLocalStorage = (year) => {
     ul_cell_calendars.forEach((cell, i) => {
       while (cell.children.length >= 1) {
         cell.removeChild(cell.lastChild);
-      };
+      }
       events.days[i].events.forEach((event) => {
         createEventList(cell, event);
       });
@@ -75,7 +69,6 @@ const getEventsFromLocalStorage = (year) => {
 };
 
 const createEventList = (parent, event) => {
-
   const list = document.createElement("li");
   const span = document.createElement("span");
 
@@ -93,7 +86,7 @@ const createEventList = (parent, event) => {
   list.appendChild(span);
   list.setAttribute("data-id", new Date(event.initDate).getTime());
   list.classList.add("eventItem__li--style");
-  styleBackgroundEvent(list, event.type)
+  styleBackgroundEvent(list, event.type);
 
   if (event.finnished) {
     list.classList.add("event-done-list");
@@ -101,17 +94,14 @@ const createEventList = (parent, event) => {
   addClickListenertoEvent(list, event, year);
 
   parent.appendChild(list);
-
 };
 
 //Give style to events list item depending on type of meeting
-function styleBackgroundEvent (li, type) {
-  const colorMeeting = eventsColor.filter(item => item.type === type).map(el=> el.color);
+function styleBackgroundEvent(li, type) {
+  const colorMeeting = eventsColor
+    .filter((item) => item.type === type)
+    .map((el) => el.color);
   li.style.backgroundColor = colorMeeting;
 }
 
-export {
-  saveEvents,
-  getEventsFromLocalStorage,
-  createEventList
-};
+export { saveEvents, getEventsFromLocalStorage, createEventList };
