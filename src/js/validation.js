@@ -75,7 +75,6 @@ function submitEventForm(e) {
   }
 
   //Validate remind if exists
-  console.log(newEvent.checkReminder());
   if (newEvent.checkReminder()) {
     addErrorMessage(reminder, newEvent.errorMessages("reminder"));
   } else{

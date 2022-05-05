@@ -7,6 +7,10 @@ import {
   submitEventForm,
   resetForm
 } from "./validation.js";
+import {
+  createEventList,
+  getEventsFromLocalStorage
+} from "./localstorage.js";
 
 const modal = document.getElementById("modal__containerCreate");
 const modalEventInfo = document.getElementById("modal__containerInfo");
@@ -32,6 +36,7 @@ const getWeeksDays = (parentElement, locale) => {
     parentElement.appendChild(weekDayElement);
   });
 };
+
 
 const getCurrentDate = (locale) => {
   const intl = new Intl.DateTimeFormat(locale, {
@@ -63,9 +68,7 @@ const getCurrentDate = (locale) => {
       arrayLocaStorageYear[i].days.forEach((dayEvent) => {
         if (dayEvent.number.toString() == day.textContent) {
           dayEvent.events.forEach((ev, index) => {
-            console.log(ev.reminder);
             if (ev.reminder) {
-              console.log('entra');
               setReminder(ev, year, listEvents[index])
             }
           });
@@ -73,43 +76,54 @@ const getCurrentDate = (locale) => {
       });
       day.parentElement.parentElement.setAttribute('data-currentday', true);
     }
-    // day.parentElement.parentElement.addEventListener('click', (e) => {
-    //   if (e.target.matches('.cell__calendar') || e.target.matches('.cell__calendar-day')){
-    //     displayDayCard(e)
-    //   }
-    // })
+
+    day.addEventListener('click', (e) => {
+      displayDayCard(e.target);
+    })
   });
 };
 
-// function displayDayCard(e) {
-//   const currentDayAside = document.getElementById('dayCard__h1');
-//   const eventList = document.getElementById('dayCard__ul');
-//   const calendarEventList = e.target.querySelectorAll('li');
-//   const currentDay = e.target.querySelector('[value]');
-//   const regularNumbers = ordinaryNumbers(currentDay.textContent)
-//   const currentMonth = e.target.parentElement.parentElement.getAttribute('name');
-//   currentDayAside.textContent = `${regularNumbers} ${currentMonth}`
+//Display info of selected date in day card
+function displayDayCard(e) {
+  const currentDayAside = document.getElementById('dayCard__h1');
+  const eventList = document.getElementById('dayCard__ul');
+  const calendarEventList = e.parentElement.parentElement.querySelectorAll('[data-id]');
+  const currentDay = e.textContent;
+  const regularNumbers = ordinaryNumbers(currentDay);
+  const currentMonth = e.parentElement.parentElement.parentElement.parentElement.getAttribute('data-month');
+  currentDayAside.textContent = `${regularNumbers} ${currentMonth}`;
 
-//   if (calendarEventList.length > 0){
-//     calendarEventList.forEach((event) => {
-//       const eventTitle = event.textContent.substring(8).trim();
-//       const eventTime = event.textContent.substring(0,8).trim();
-//       createEventList(eventList, eventTitle, eventTime);
-//     })
-//   }
-// }
+  eventList.textContent = ""; //reset list content
+  if (calendarEventList.length > 0) {
+
+    calendarEventList.forEach((eventli) => {
+      const arrayOfEvents = getEventsFromLocalStorage(year);
+      const objectMonth = arrayOfEvents.find(item => (item.nameOfMonth) == currentMonth);
+      const objectDay = objectMonth.days.find(day => day.number == currentDay);
+      const eventSelected = objectDay.events.find(event => new Date(event.initDate).getTime() == eventli.getAttribute("data-id"));
+      createEventList(eventList, eventSelected);
+    });
+  }
+
+}
+
+//Update day card with current date on load
+function onLoadCurrentCard(){
+  const currentDateCell = document.querySelector('[data-currentday="true"]');
+  displayDayCard(currentDateCell.firstElementChild.lastElementChild);
+}
 
 function ordinaryNumbers(number) {
   if (number === '1' || number === '21' || number === '31') {
     return `${number}st`
 
-  }else if (number === '2' || number === '22') {
+  } else if (number === '2' || number === '22') {
     return `${number}nd`
 
-  }else if (number === '3') {
+  } else if (number === '3') {
     return `${number}rd`
 
-  }else {
+  } else {
     return `${number}th`
   }
 }
@@ -198,7 +212,6 @@ function addClickListenertoEvent(element, event, year) {
 
   element.addEventListener("click", () => {
     if (event.finnished) {
-      console.log('entra');
       element.classList.add("event-done-list");
       doneEventUpdate("Event finnished");
     } else {
@@ -218,7 +231,7 @@ function addClickListenertoEvent(element, event, year) {
       if (event.reminder) {
         clearTimeout(event.intervalIDstart);
         clearTimeout(event.intervalIDend);
-      }; 
+      };
     });
 
     modalEventInfo.classList.toggle("hide");
@@ -263,25 +276,19 @@ function setReminder(event, year) {
   const currentTime = new Date().getTime();
   const initialDate = new Date(formatDate(event.initDate)).getTime();
   const timeToTimoutReminder = (initialDate - currentTime) - (event.reminderTime * 60000);
-  console.log(timeToTimoutReminder);
   const timeToTimeoutEnd = initialDate - currentTime;
-  console.log(timeToTimeoutEnd);
 
   let liFilterElement = document.querySelector(`[data-id="${new Date(event.initDate).getTime()}"]`);
 
   if (new Date().getTime() >= initialDate) {
-    console.log("primer if");
     event.finnished = true;
     liFilterElement.classList.add("event-done-list");
     saveToLocalStorage(year);
   } else {
-    console.log("else del primer if");
     if (initialDate - Date.now() <= event.reminderTime * 60000) {
-      console.log("segundo if");
       displayEventInfoModal(liFilterElement, event);
       doneEventUpdate(`Less than ${event.reminderTime} minutes left!`);
     } else {
-      console.log("else del segundo if");
       //Reminder x minutes before the event
       event.intervalIDstart = setTimeout(() => {
         displayEventInfoModal(liFilterElement, event);
@@ -342,5 +349,6 @@ export {
   addClickListenertoEvent,
   setReminder,
   formatDate,
-  modal
+  modal,
+  onLoadCurrentCard
 };

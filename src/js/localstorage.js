@@ -53,7 +53,7 @@ const saveEvents = (year, month, day, event, duration = 0) => {
 const getEventsFromLocalStorage = (year) => {
   let localStorgeEvents = JSON.parse(localStorage.getItem(`data-${year}`));
   const monthArray = document.querySelectorAll("[year='2022']");
-  monthArray.forEach((month, index) => {
+  monthArray.forEach((month) => {
 
     let events = localStorgeEvents.find(
       (item) => item.nameOfMonth === month.getAttribute("data-month")
@@ -63,7 +63,6 @@ const getEventsFromLocalStorage = (year) => {
 
     ul_cell_calendars.forEach((cell, i) => {
       while (cell.children.length >= 1) {
-        console.log("borras???");
         cell.removeChild(cell.lastChild);
       };
       events.days[i].events.forEach((event) => {
@@ -89,10 +88,12 @@ const createEventList = (parent, event) => {
 
   list.textContent = formaterDate;
   span.textContent = `${event.title}`;
+  span.classList.add("eventItem__span--style");
 
   list.appendChild(span);
   list.setAttribute("data-id", new Date(event.initDate).getTime());
   list.classList.add("eventItem__li--style");
+  styleBackgroundEvent(list, event.type)
 
   if (event.finnished) {
     list.classList.add("event-done-list");
@@ -103,8 +104,14 @@ const createEventList = (parent, event) => {
 
 };
 
+//Give style to events list item depending on type of meeting
+function styleBackgroundEvent (li, type) {
+  const colorMeeting = eventsColor.filter(item => item.type === type).map(el=> el.color);
+  li.style.backgroundColor = colorMeeting;
+}
 
 export {
   saveEvents,
-  getEventsFromLocalStorage
+  getEventsFromLocalStorage,
+  createEventList
 };
