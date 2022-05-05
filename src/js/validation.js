@@ -14,6 +14,7 @@ import {
   modal
 } from "./utils.js";
 
+//Submit form 
 function submitEventForm(e) {
   e.preventDefault();
   const title = formEvent.elements["title"];
@@ -138,6 +139,8 @@ function createErrorMessage(message) {
   return div;
 }
 
+
+//Reset form
 function resetForm() {
 
   formEvent.querySelector('label[for=end]').classList.add("hide");
@@ -148,6 +151,7 @@ function resetForm() {
     invalidInputs.forEach(removeErrorMessage);
   }
   modal.classList.toggle("hide");
+  
 }
 
 export {

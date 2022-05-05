@@ -7,6 +7,25 @@ import {
   year
 } from "./main.js";
 
+const eventsColor = [
+  {
+    type: "Meeting",
+    color:"#DFF4E6"
+  },
+  {
+    type: "Personal",
+    color:"#FFC1AD"
+  },
+  {
+    type: "Study",
+    color: "#FFF68F"
+  },
+  {
+    type: "Tinder",
+    color: "#FF6379"
+  }
+];
+
 const saveEvents = (year, month, day, event, duration = 0) => {
   // TODO: Save events to local storage with 3+ months of duration
   if (localStorage.getItem(`data-${year}`)) {
@@ -73,6 +92,7 @@ const createEventList = (parent, event) => {
 
   list.appendChild(span);
   list.setAttribute("data-id", new Date(event.initDate).getTime());
+  list.classList.add("eventItem__li--style");
 
   if (event.finnished) {
     list.classList.add("event-done-list");
@@ -82,6 +102,7 @@ const createEventList = (parent, event) => {
   parent.appendChild(list);
 
 };
+
 
 export {
   saveEvents,
