@@ -10,7 +10,7 @@ import { getEventsFromLocalStorage } from "./localstorage.js";
 const main = document.querySelector("main");
 
 const year = 2022;
-const locale = "us";
+const locale = "en-us";
 const numberOfMonths = [...Array(12).keys()];
 const nextBtn = document.getElementById("next-arrow");
 const previousBtn = document.getElementById("back-arrow");

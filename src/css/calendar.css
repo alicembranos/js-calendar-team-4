@@ -21,6 +21,10 @@
     background-color: var(--tertiary-color);
 }
 
+.cell__calendar:hover {
+    background-color: #084c6b;
+}
+
 .days__container{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -35,6 +39,7 @@
 
 .cell__calendar-events {
     height: 55%;
+    list-style-type: none;
 }
 
 .currentDay__p{
@@ -51,8 +56,10 @@
 
 .cell__calendar_day {
     margin-top: 0.2rem;
+    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
 }
 
 .pencil-create {
-    cursor: pointer;
+    cursor:url(/src/assets/images/worklog/create-pointer.cur), pointer;
+    width: fit-content;
 }
