@@ -1,18 +1,5 @@
-<<<<<<< HEAD
-import { formEvent } from "./main.js";
-import { submitEventForm } from "./validation.js";
-import { createEventList } from "./localstorage.js";
-=======
-import {
-  formEvent,
-  arrayLocaStorageYear,
-  year
-} from "./main.js";
-import {
-  submitEventForm,
-  resetForm
-} from "./validation.js";
->>>>>>> develop
+import { formEvent, arrayLocaStorageYear, year } from "./main.js";
+import { submitEventForm, resetForm } from "./validation.js";
 
 const modal = document.getElementById("modal__containerCreate");
 const modalEventInfo = document.getElementById("modal__containerInfo");
@@ -66,51 +53,18 @@ const getCurrentDate = (locale) => {
       const parentDay = day.parentElement.nextElementSibling;
       const listEvents = parentDay.querySelectorAll("li");
       day.classList.add("currentDay__p");
-<<<<<<< HEAD
-      day.parentElement.parentElement.setAttribute("data-currentday", true);
-    }
-    day.parentElement.parentElement.addEventListener("click", (e) => {
-      if (
-        e.target.matches(".cell__calendar") ||
-        e.target.matches(".cell__calendar-day")
-      ) {
-        displayDayCard(e);
-      }
-    });
-  });
-};
-
-function displayDayCard(e) {
-  const currentDayAside = document.getElementById("dayCard__h1");
-  const eventList = document.getElementById("dayCard__ul");
-  const calendarEventList = e.target.querySelectorAll("li");
-  const currentDay = e.target.querySelector("[value]");
-  const regularNumbers = ordinaryNumbers(currentDay.textContent);
-  const currentMonth =
-    e.target.parentElement.parentElement.getAttribute("name");
-  currentDayAside.textContent = `${regularNumbers} ${currentMonth}`;
-
-  if (calendarEventList.length > 0) {
-    calendarEventList.forEach((event) => {
-      const eventTitle = event.textContent.substring(8).trim();
-      const eventTime = event.textContent.substring(0, 8).trim();
-      createEventList(eventList, eventTitle, eventTime);
-    });
-  }
-}
-=======
       arrayLocaStorageYear[i].days.forEach((dayEvent) => {
         if (dayEvent.number.toString() == day.textContent) {
           dayEvent.events.forEach((ev, index) => {
             console.log(ev.reminder);
             if (ev.reminder) {
-              console.log('entra');
-              setReminder(ev, year, listEvents[index])
+              console.log("entra");
+              setReminder(ev, year, listEvents[index]);
             }
           });
         }
       });
-      day.parentElement.parentElement.setAttribute('data-currentday', true);
+      day.parentElement.parentElement.setAttribute("data-currentday", true);
     }
     // day.parentElement.parentElement.addEventListener('click', (e) => {
     //   if (e.target.matches('.cell__calendar') || e.target.matches('.cell__calendar-day')){
@@ -137,7 +91,6 @@ function displayDayCard(e) {
 //     })
 //   }
 // }
->>>>>>> develop
 
 function ordinaryNumbers(number) {
   if (number === "1" || number === "21" || number === "31") {
@@ -152,20 +105,12 @@ function ordinaryNumbers(number) {
 }
 
 const getFirstDayOfMonth = (year, numberOfMonths) => {
-<<<<<<< HEAD
   const currentMonths = document.querySelectorAll(`[year = "${year}"]`);
-=======
-  const months = document.querySelectorAll("[data-month]");
->>>>>>> develop
 
   numberOfMonths.forEach((number) => {
     const startOn = new Date(year, number, 0).getDay();
 
-<<<<<<< HEAD
     let currentMonth = currentMonths[number].querySelectorAll("[value]");
-=======
-    let currentMonth = months[number].querySelectorAll("[value]");
->>>>>>> develop
 
     currentMonth.forEach((day) => {
       if (day.textContent === "1") {
@@ -201,7 +146,8 @@ function openForm(e) {
   const day = parseInt(
     e.target.parentNode.firstElementChild.lastElementChild.textContent
   );
-  let month = e.target.parentNode.parentNode.parentNode.getAttribute("data-month");
+  let month =
+    e.target.parentNode.parentNode.parentNode.getAttribute("data-month");
   const year = e.target.parentNode.parentNode.parentNode.getAttribute("year");
 
   month = month.charAt(0).toUpperCase() + month.slice(1);
@@ -240,20 +186,23 @@ modal.addEventListener("click", (e) => {
 
 //Add click listener to all li over the calendar cells
 function addClickListenertoEvent(element, event, year) {
-
   element.addEventListener("click", () => {
     if (event.finnished) {
-      console.log('entra');
+      console.log("entra");
       element.classList.add("event-done-list");
       doneEventUpdate("Event finnished");
     } else {
       doneEventUpdate("");
     }
     document.getElementById("modal__info").textContent = event.title;
-    document.getElementById("modal__initalDate").textContent = formatDate(event.initDate);
-    document.getElementById("modal__endDate").textContent = (event.endDate !== null ? formatDate(event.endDate) : "");
+    document.getElementById("modal__initalDate").textContent = formatDate(
+      event.initDate
+    );
+    document.getElementById("modal__endDate").textContent =
+      event.endDate !== null ? formatDate(event.endDate) : "";
     document.getElementById("modal__eventType").textContent = event.type;
-    document.getElementById("modal__description").textContent = event.description;
+    document.getElementById("modal__description").textContent =
+      event.description;
 
     const doneButton = document.getElementById("modal__doneBtn");
 
@@ -263,7 +212,7 @@ function addClickListenertoEvent(element, event, year) {
       if (event.reminder) {
         clearTimeout(event.intervalIDstart);
         clearTimeout(event.intervalIDend);
-      }; 
+      }
     });
 
     modalEventInfo.classList.toggle("hide");
@@ -274,18 +223,18 @@ function addClickListenertoEvent(element, event, year) {
 //Update Headline From Event Info Modal
 function doneEventUpdate(textInfo) {
   const h2DoneInfo = document.getElementById("modal__info__state");
-  h2DoneInfo.textContent = textInfo
+  h2DoneInfo.textContent = textInfo;
 }
 
 //Format date to locale format
 function formatDate(date) {
   const dateConstructor = new Date(date);
   return dateConstructor.toLocaleTimeString("en-US", {
-    day: 'numeric', // numeric, 2-digit
-    year: 'numeric', // numeric, 2-digit
-    month: 'long', // numeric, 2-digit, long, short, narrow
-    hour: 'numeric', // numeric, 2-digit
-    minute: 'numeric',
+    day: "numeric", // numeric, 2-digit
+    year: "numeric", // numeric, 2-digit
+    month: "long", // numeric, 2-digit, long, short, narrow
+    hour: "numeric", // numeric, 2-digit
+    minute: "numeric",
   });
 }
 
@@ -298,21 +247,22 @@ modalEventInfo.addEventListener("click", (e) => {
     modalEventInfo.classList.toggle("hide");
     eventInfo.classList.toggle("hide");
   } else if (e.target.id === "modal__doneBtn") {
-
   }
 });
 
 //Set up reminder for events
 function setReminder(event, year) {
-
   const currentTime = new Date().getTime();
   const initialDate = new Date(formatDate(event.initDate)).getTime();
-  const timeToTimoutReminder = (initialDate - currentTime) - (event.reminderTime * 60000);
+  const timeToTimoutReminder =
+    initialDate - currentTime - event.reminderTime * 60000;
   console.log(timeToTimoutReminder);
   const timeToTimeoutEnd = initialDate - currentTime;
   console.log(timeToTimeoutEnd);
 
-  let liFilterElement = document.querySelector(`[data-id="${new Date(event.initDate).getTime()}"]`);
+  let liFilterElement = document.querySelector(
+    `[data-id="${new Date(event.initDate).getTime()}"]`
+  );
 
   if (new Date().getTime() >= initialDate) {
     console.log("primer if");
@@ -341,9 +291,7 @@ function setReminder(event, year) {
       clip.play();
     }, timeToTimeoutEnd);
   }
-
 }
-
 
 //Update event finnished
 function updateEventDone(event, year, li) {
@@ -354,14 +302,17 @@ function updateEventDone(event, year, li) {
 
 //Save array lo localstorage
 const saveToLocalStorage = (year) => {
-  localStorage.setItem((`data-${year}`), JSON.stringify(arrayLocaStorageYear));
-}
+  localStorage.setItem(`data-${year}`, JSON.stringify(arrayLocaStorageYear));
+};
 
 //Display event info modal window
 function displayEventInfoModal(element, event) {
   document.getElementById("modal__info").textContent = event.title;
-  document.getElementById("modal__initalDate").textContent = formatDate(event.initDate);
-  document.getElementById("modal__endDate").textContent = (event.endDate !== null ? formatDate(event.endDate) : "")
+  document.getElementById("modal__initalDate").textContent = formatDate(
+    event.initDate
+  );
+  document.getElementById("modal__endDate").textContent =
+    event.endDate !== null ? formatDate(event.endDate) : "";
   document.getElementById("modal__eventType").textContent = event.type;
   document.getElementById("modal__description").textContent = event.description;
 
@@ -371,7 +322,7 @@ function displayEventInfoModal(element, event) {
     event.finnished = true;
     element.classList.add("event-done-list");
     doneEventUpdate("Event finnished.");
-    saveToLocalStorage(year)
+    saveToLocalStorage(year);
     if (event.remind); //TODO clear interval
   });
 
@@ -387,5 +338,5 @@ export {
   addClickListenertoEvent,
   setReminder,
   formatDate,
-  modal
+  modal,
 };

@@ -1,29 +1,23 @@
-import {
-  addClickListenertoEvent,
-  formatDate,
-  setReminder
-} from "./utils.js"
-import {
-  year
-} from "./main.js";
+import { addClickListenertoEvent, formatDate, setReminder } from "./utils.js";
+import { year } from "./main.js";
 
 const eventsColor = [
   {
     type: "Meeting",
-    color:"#DFF4E6"
+    color: "#DFF4E6",
   },
   {
     type: "Personal",
-    color:"#FFC1AD"
+    color: "#FFC1AD",
   },
   {
     type: "Study",
-    color: "#FFF68F"
+    color: "#FFF68F",
   },
   {
     type: "Tinder",
-    color: "#FF6379"
-  }
+    color: "#FF6379",
+  },
 ];
 
 const saveEvents = (year, month, day, event, duration = 0) => {
@@ -52,14 +46,9 @@ const saveEvents = (year, month, day, event, duration = 0) => {
 
 const getEventsFromLocalStorage = (year) => {
   let localStorgeEvents = JSON.parse(localStorage.getItem(`data-${year}`));
-<<<<<<< HEAD
   const monthArray = document.querySelectorAll(`[year = "${year}"]`);
 
-=======
-  const monthArray = document.querySelectorAll("[year='2022']");
->>>>>>> develop
   monthArray.forEach((month, index) => {
-
     let events = localStorgeEvents.find(
       (item) => item.nameOfMonth === month.getAttribute("data-month")
     );
@@ -70,7 +59,7 @@ const getEventsFromLocalStorage = (year) => {
       while (cell.children.length >= 1) {
         console.log("borras???");
         cell.removeChild(cell.lastChild);
-      };
+      }
       events.days[i].events.forEach((event) => {
         createEventList(cell, event);
       });
@@ -81,7 +70,6 @@ const getEventsFromLocalStorage = (year) => {
 };
 
 const createEventList = (parent, event) => {
-
   const list = document.createElement("li");
   const span = document.createElement("span");
 
@@ -105,11 +93,6 @@ const createEventList = (parent, event) => {
   addClickListenertoEvent(list, event, year);
 
   parent.appendChild(list);
-
 };
 
-
-export {
-  saveEvents,
-  getEventsFromLocalStorage
-};
+export { saveEvents, getEventsFromLocalStorage };
