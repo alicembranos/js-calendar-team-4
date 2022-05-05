@@ -11,7 +11,7 @@ const main = document.querySelector("main");
 
 const year = new Date().getFullYear();
 
-const locale = "us";
+const locale = "us-US";
 const numberOfMonths = [...Array(12).keys()];
 const nextBtn = document.getElementById("dayCard__nextButton");
 const previousBtn = document.getElementById("dayCard__previousButton");
@@ -64,7 +64,7 @@ const buildCalendar = (calendar) => {
     daysContainer.classList.add("days__container");
     monthElement.classList.add("calendar");
     monthElement.classList.add("hide");
-    monthElement.setAttribute("name", month.nameOfMonth);
+    monthElement.setAttribute("data-month", month.nameOfMonth);
     monthElement.setAttribute("year", month.year);
     monthName.textContent = `${month.nameOfMonth.toUpperCase()} ${month.year}`;
 
@@ -73,6 +73,29 @@ const buildCalendar = (calendar) => {
     getWeeksDays(daysContainer, locale);
     setDays2(daysContainer, month.numbersOfDays, year);
     containerCalendar.appendChild(monthElement);
+  });
+};
+
+const buildPreviousCalendar = (calendar) => {
+  calendar.reverse().forEach((month) => {
+    let monthElement = document.createElement("div");
+    let monthName = document.createElement("h2");
+    let daysContainer = document.createElement("div");
+    const containerCalendar = document.getElementById("mainCalendar");
+
+    daysContainer.classList.add("days__container");
+    monthElement.classList.add("calendar");
+    monthElement.classList.add("hide");
+    monthElement.setAttribute("data-month", month.nameOfMonth);
+    monthElement.setAttribute("year", month.year);
+    monthName.textContent = `${month.nameOfMonth.toUpperCase()} ${month.year}`;
+
+    monthElement.appendChild(monthName);
+    monthElement.appendChild(daysContainer);
+    getWeeksDays(daysContainer, locale);
+    setDays2(daysContainer, month.numbersOfDays, year);
+
+    containerCalendar.insertBefore(monthElement, containerCalendar.firstChild);
   });
 };
 
@@ -99,4 +122,5 @@ export {
   numberOfMonths,
   getFirstDayOfMonth,
   arrayLocaStorageYear,
+  buildPreviousCalendar,
 };
