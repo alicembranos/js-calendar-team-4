@@ -1,4 +1,4 @@
-.mainCalendar{
+.mainCalendar {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -25,7 +25,7 @@
     background-color: #084c6b;
 }
 
-.days__container{
+.days__container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 0.5fr repeat(5, 1fr);
@@ -51,7 +51,7 @@
     color: #2887b3;
 }
 
-.cell__calendar-header{
+.cell__calendar-header {
     display: flex;
     justify-content: flex-end;
 }
@@ -60,10 +60,36 @@
     display: block;
     height: 55%;
     list-style-type: none;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
-.currentDay__p{
+.cell__calendar-events::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.cell__calendar-events::-webkit-scrollbar:vertical {
+    width: 5px;
+}
+
+.cell__calendar-events::-webkit-scrollbar-button:increment,
+.cell__calendar-events::-webkit-scrollbar-button {
+    display: none;
+}
+
+.cell__calendar-events::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.cell__calendar-events::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+}
+
+.cell__calendar-events::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.currentDay__p {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,24 +100,28 @@
 }
 
 
-    .event-done-list {
+.event-done-list {
     text-decoration: line-through;
     opacity: 0.7;
-    border-radius: 0.5rem;
-    background-color: #2887b3;
-    color: white;
-    text-align: center;
+}
+
+.event-done-list > span {
+    text-decoration: line-through;
+    opacity: 0.7;
 }
 
 .cell__calendar_day {
-    margin-top: 0.2rem;
-    cursor:url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
+    margin: 0.2rem 0 0.4rem 0;
+    cursor: url(/src/assets/images/worklog/select-date-pointer.cur), pointer;
 }
 
-.eventItem__li--style{
+.eventItem__li--style {
+    margin: 0.2rem 0.1rem;
+    padding: 0.05rem;
     overflow: hidden;
-    font-size: 0.7rem;
     border-radius: 2px;
+    font-size: 0.7rem;
+    color: var(--primary-color);
 }
 
 .eventItem__span--style {
@@ -101,7 +131,17 @@
     font-style: italic;
 }
 
+.weekDay {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
 .pencil-create {
-    cursor:url(/src/assets/images/worklog/create-pointer.cur), pointer;
+    cursor: url(/src/assets/images/worklog/create-pointer.cur), pointer;
     width: fit-content;
+}
+
+.pencil-create{
+    margin: 0.2rem 0;
 }
