@@ -1,4 +1,11 @@
-import {addClickListenertoEvent, formatDate} from  "./utils.js"
+import {
+  addClickListenertoEvent,
+  formatDate,
+  setReminder
+} from "./utils.js"
+import {
+  year
+} from "./main.js";
 
 const saveEvents = (year, month, day, event, duration = 0) => {
   // TODO: Save events to local storage with 3+ months of duration
@@ -16,6 +23,11 @@ const saveEvents = (year, month, day, event, duration = 0) => {
     }
     localStorage.setItem(`data-${year}`, JSON.stringify(newEvent));
     getEventsFromLocalStorage(year);
+    if (event.reminder) {
+      if (new Date().getDate() == new Date(event.initDate).getDate()) {
+        setReminder(event, year);
+      }
+    }
   }
 };
 
@@ -30,6 +42,9 @@ const getEventsFromLocalStorage = (year) => {
     let ul_cell_calendars = month.querySelectorAll(".cell__calendar-events");
 
     ul_cell_calendars.forEach((cell, i) => {
+      while (cell.children.length > 1) {
+        cell.removeChild(cell.lastChild);
+      };
       events.days[i].events.forEach((event) => {
         createEventList(cell, event);
       });
@@ -41,15 +56,11 @@ const getEventsFromLocalStorage = (year) => {
 
 const createEventList = (parent, event) => {
 
-  while (parent.children.length > 1) {
-    parent.removeChild(parent.lastChild);
-  };
-
   const list = document.createElement("li");
   const span = document.createElement("span");
 
   const date = new Date(formatDate(event.initDate));
-  const date1= new Date(formatDate(event.initDate)).getTime();
+  // const date1= new Date(formatDate(event.initDate)).getTime();
   let formaterDate = date.toLocaleTimeString("en-US", {
     timeStyle: "short",
     hour12: true,
@@ -59,13 +70,15 @@ const createEventList = (parent, event) => {
   span.textContent = `${event.title}`;
 
   list.appendChild(span);
-  list.setAttribute("data-id", date1);
-  
+  list.setAttribute("data-id", new Date(event.initDate).getTime());
+
   if (event.finnished) {
     list.classList.add("event-done-list");
   }
-  addClickListenertoEvent(list, event);
+  addClickListenertoEvent(list, event, year);
+
   parent.appendChild(list);
+
 };
 
 export {

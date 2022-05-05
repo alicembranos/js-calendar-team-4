@@ -63,7 +63,8 @@ const getCurrentDate = (locale) => {
         if (dayEvent.number.toString() == day.textContent) {
           dayEvent.events.forEach((ev, index) => {
             console.log(ev.reminder);
-            if(ev.reminder){
+            if (ev.reminder) {
+              console.log('entra');
               setReminder(ev, year, listEvents[index])
             }
           });
@@ -147,17 +148,22 @@ modal.addEventListener("click", (e) => {
     reminder.classList.toggle("hide");
   } else if (e.target.id === "form__acceptBtn") {
     submitEventForm(e);
-    resetForm();
-    modal.classList.toggle("hide");
+    // resetForm();
+    // modal.classList.toggle("hide");
   }
 });
 
 //Add click listener to all li over the calendar cells
-function addClickListenertoEvent(element, event) {
+function addClickListenertoEvent(element, event, year) {
 
   element.addEventListener("click", () => {
-    if (event.finnished) list.classList.add("event-done-list");
-
+    if (event.finnished) {
+      console.log('entra');
+      element.classList.add("event-done-list");
+      doneEventUpdate("Event finnished");
+    } else {
+      doneEventUpdate("");
+    }
     document.getElementById("modal__info").textContent = event.title;
     document.getElementById("modal__initalDate").textContent = formatDate(event.initDate);
     document.getElementById("modal__endDate").textContent = (event.endDate !== null ? formatDate(event.endDate) : "");
@@ -167,11 +173,12 @@ function addClickListenertoEvent(element, event) {
     const doneButton = document.getElementById("modal__doneBtn");
 
     doneButton.addEventListener("click", () => {
-      event.finnished = true;
-      element.classList.add("event-done-list");
+      updateEventDone(event, year, element);
       doneEventUpdate("Event finnished");
-      saveToLocalStorage(year);
-      if (event.remind); //TODO clear interval
+      if (event.reminder) {
+        clearTimeout(event.intervalIDstart);
+        clearTimeout(event.intervalIDend);
+      }; 
     });
 
     modalEventInfo.classList.toggle("hide");
@@ -211,40 +218,45 @@ modalEventInfo.addEventListener("click", (e) => {
 });
 
 //Set up reminder for events
-function setReminder(event, year, li) {
+function setReminder(event, year) {
 
   const currentTime = new Date().getTime();
   const initialDate = new Date(formatDate(event.initDate)).getTime();
-  const timeToTimoutReminder = currentTime - (event.reminderTime * 60000);
+  const timeToTimoutReminder = (initialDate - currentTime) - (event.reminderTime * 60000);
   console.log(timeToTimoutReminder);
   const timeToTimeoutEnd = initialDate - currentTime;
   console.log(timeToTimeoutEnd);
 
-  // let liFilterElement = document.querySelector(`[data-id="${initialDate}"]`);
+  let liFilterElement = document.querySelector(`[data-id="${new Date(event.initDate).getTime()}"]`);
 
   if (new Date().getTime() >= initialDate) {
     console.log("primer if");
     event.finnished = true;
-    li.classList.add("event-done-list");
+    liFilterElement.classList.add("event-done-list");
     saveToLocalStorage(year);
   } else {
     console.log("else del primer if");
     if (initialDate - Date.now() <= event.reminderTime * 60000) {
       console.log("segundo if");
-      displayEventInfoModal(li, event);
+      displayEventInfoModal(liFilterElement, event);
       doneEventUpdate(`Less than ${event.reminderTime} minutes left!`);
     } else {
       console.log("else del segundo if");
       //Reminder x minutes before the event
       event.intervalIDstart = setTimeout(() => {
-        displayEventInfoModal(li, event);
+        // let i = timeToTimoutReminder;
+        // let prueba = setInterval(() => {
+        //   console.log("cuenta atras: " + i);
+        //   i--;
+        // },1000);
+        displayEventInfoModal(liFilterElement, event);
         doneEventUpdate(`Less than ${event.reminderTime} minutes left!`);
       }, timeToTimoutReminder);
     }
     event.intervalIDend = setTimeout(() => {
-      displayEventInfoModal(li, event);
+      displayEventInfoModal(liFilterElement, event);
       doneEventUpdate(`Your event starts now!`);
-      updateEventDone(event, year, li);
+      updateEventDone(event, year, liFilterElement);
     }, timeToTimeoutEnd);
   }
 
@@ -292,5 +304,6 @@ export {
   setDays2,
   addClickListenertoEvent,
   setReminder,
-  formatDate
+  formatDate,
+  modal
 };

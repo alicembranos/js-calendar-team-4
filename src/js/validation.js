@@ -10,6 +10,8 @@ import {
   saveEvents
 } from "./localstorage.js";
 
+import {modal} from "./utils.js";
+
 function submitEventForm(e) {
   e.preventDefault();
   const title = formEvent.elements["title"];
@@ -75,17 +77,15 @@ function submitEventForm(e) {
     const month = initDate.getMonth();
     const day = initDate.getDate();
     const year = initDate.getFullYear();
-
     if (endDateCheck.checked) {
       saveEvents(year, month, day, newEvent, numOfDays);
 
     } else {
       saveEvents(year, month, day, newEvent);
     }
+    resetForm();
   }
 }
-
-
 
 //Add div error message
 function addErrorMessage(input, message) {
@@ -130,12 +130,12 @@ function resetForm() {
 
   formEvent.querySelector('label[for="end"]').classList.add("hide");
   formEvent.querySelector('[name="select__reminder"]').classList.add("hide");
-  formEvent.reset();
+  // formEvent.reset();
   const invalidInputs = formEvent.querySelectorAll(".invalid");
   if (invalidInputs.length > 1) {
     invalidInputs.forEach(removeErrorMessage);
   }
-
+  modal.classList.toggle("hide");
 }
 
 export {

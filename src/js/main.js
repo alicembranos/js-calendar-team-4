@@ -90,4 +90,4 @@ getCurrentDate(locale);
 //   previousMonth(currentMonth);
 // });
 
-export { formEvent, arrayLocaStorageYear, year };
+export { formEvent, arrayLocaStorageYear, year};
