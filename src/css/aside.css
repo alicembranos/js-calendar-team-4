@@ -51,12 +51,11 @@
     align-items: center;
     justify-content: space-around;
 }
+
 .dayCard-calendar__div{
-    margin-top: 1rem;
-    height: 15rem;
-    border: 1px solid white;
-    border-radius: 7px;
+    margin: 1rem 0;
 }
+
 .dayCard__ul{
     height: 80%;
     padding: 0.6rem;
@@ -68,7 +67,7 @@
 }
 
 .dayCard-calendar .calendar {
-    height: 5rem;
+    height: fit-content;
 }
 
 .dayCard-calendar__div .cell__calendar{
@@ -91,4 +90,12 @@
 .dayCard-calendar__div .calendar {
     width: 100%;
     padding: 0.2rem 0.2rem;
+}
+
+.dayCard__ul .eventItem__li--style {
+    margin: 0.5rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+    text-align: start;
+    color: var(--primary-color);
 }

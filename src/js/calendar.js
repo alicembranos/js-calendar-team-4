@@ -33,10 +33,17 @@ const calendar = (year) => {
 }
 
 
-function createMiniCalendar() {
+function createMiniCalendar(year) {
     const miniCalendarContainer = document.getElementById("dayCard-calendar__div");
     const mainCalendar = document.getElementById("mainCalendar").cloneNode(true);
     miniCalendarContainer.appendChild(mainCalendar);
+
+    // const monthsCalendar = document.querySelectorAll(`[year="${year}"]`);
+
+    // monthsCalendar.forEach(month => {
+    //     let newMonth = month.cloneNode(true);
+    //     miniCalendarContainer.appendChild(newMonth);
+    // });
 
     const allUlElements = miniCalendarContainer.querySelectorAll(".cell__calendar-events");
     const allPencils = miniCalendarContainer.querySelectorAll(".pencil-create");

@@ -113,7 +113,7 @@ let arrayLocaStorageYear = getEventsFromLocalStorage(year);
 getCurrentDate(locale);
 onLoadCurrentCard();
 
-createMiniCalendar();
+createMiniCalendar(year);
 
 nextBtn.addEventListener("click", () => {
     const currentMonth = document.querySelectorAll('[currentmonth="current"]');

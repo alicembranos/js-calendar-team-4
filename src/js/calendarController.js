@@ -21,6 +21,19 @@ const nextMonth = (currentMonth) => {
   }
 };
 
+const nextMonthMini = (currentMonth) => {
+  if (currentMonth.nextElementSibling) {
+    nextNavigation(currentMonth);
+  } else {
+    numberOfYears++;
+    const nextYear = calendar(year + numberOfYears);
+    buildCalendar(nextYear);
+    createMiniCalendar(nextYear);
+    getFirstDayOfMonth(year + numberOfYears, numberOfMonths);
+    nextNavigation(currentMonth);
+  }
+};
+
 const previousMonth = (currentMonth) => {
   if (currentMonth.previousElementSibling) {
     previousNavigation(currentMonth);
@@ -34,8 +47,10 @@ const previousMonth = (currentMonth) => {
 };
 
 const nextNavigation = (currentMonth) => {
+  console.log(currentMonth);
   currentMonth.classList.toggle("hide");
   currentMonth.removeAttribute("currentmonth");
+  console.log(currentMonth.nextElementSibling);
   currentMonth.nextElementSibling.classList.toggle("hide");
   currentMonth.nextElementSibling.setAttribute("currentmonth", "current");
 };

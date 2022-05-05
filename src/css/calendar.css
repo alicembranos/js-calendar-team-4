@@ -60,7 +60,7 @@
     display: block;
     height: 55%;
     list-style-type: none;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .currentDay__p{
@@ -92,6 +92,15 @@
     overflow: hidden;
     font-size: 0.7rem;
     border-radius: 2px;
+    color: var(--primary-color);
+}
+
+.dayCard__ul .eventItem__li--style {
+    margin: 0.5rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+    text-align: start;
+    color: var(--primary-color);
 }
 
 .eventItem__span--style {
