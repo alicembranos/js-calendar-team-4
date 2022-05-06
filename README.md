@@ -6,6 +6,8 @@ Simple, lightweight, stylish calendar + organizer JavaScript Library.\
 This project consists of a calendar using the main web fundamentals.\
 This calendar allows users to create events and and add reminders up to an hour before.
 
+![Video Demo](./src/assets/video/Calendar%20Demo.gif "Video Demo.")
+
 ## Roadmap
 
 ![App Screenshot](./src/assets/images/worklog/roadmap.png "Roadmap.")
@@ -168,9 +170,11 @@ export class Event {
 ```
 🖼️ Screenshots
 
-![test image size]<img src="https://fullpath/assets/yourgif.gif" width="400" height="790">
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./src/assets/images/worklog/mainCalendar.png "Calendar")
 
+## Demo
+
+![Video Demo](./src/assets/video/Calendar%20Demo.gif "Video Demo.")
 
 ## 🚀 About Us
 We are three motivated and passionate web developpers currently studying at Assembler Institute of Technology
@@ -179,8 +183,3 @@ We are three motivated and passionate web developpers currently studying at Asse
 [Jesús Herrera](https://github.com/Jesusjha)\
 [Alejandro Ávila](https://github.com/alejandroaperez1994g)\
 [Alicia Cembranos](https://github.com/alicembranos)
-
-## Demo
-
-Insert gif or link to demo
-![Video Demo](./src/assets/video/Calendar%20Demo.mp4 "Video Demo.")
