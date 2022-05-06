@@ -1,5 +1,9 @@
 # JS CALENDAR TEAM 4
 
+
+## ROADMAP
+![This is a alt text.](./src/assets/images/worklog/roadmap.png "Roadmap.")
+
 ## 28th April 
 
 ### PARTICIPANTS 
@@ -117,7 +121,7 @@
 * Current date with different custom style
 
 
-## 3nd May 
+## 3st May 
 
 ### PARTICIPANTS 
 
@@ -153,5 +157,92 @@
 * Function render day card
 * Reminder for warning message
 * Info modal for event info
+
+## 4th May 
+
+### PARTICIPANTS 
+
+* Jesús Herrera
+* Alejandro Ávila
+* Alicia Cembranos
+
+### DONE
+
+* Check if an event is done or completed
+* Insert Next Prev Buttons to navigate within months
+* Display the current date in the header day card
+* Display list of events of the current date (must be modified the next day)
+* Implement function to add event listener to each list item and display modal info window
+
+### DIFFICULTIES
+
+* Problems with setting reminder of each event. WE decided to use setTimeout and calculate the differentce between current date and initial date or initial date - reminder time to launch the event reminder but it's not working yet.
+* We needed to modify the arguments of create list event function to be able to control if an event is finnished or done.
+
+#### LESSONS LEARNED
+
+* How to calculate time between dates.
+
+#### PERFORMED AND IN PROCESS TASKS BY TEAM MEMBER
+
+![This is a alt text.](./src/assets/images/worklog/sprint%205.png "Sprint 5.")
+
+
+![This is a alt text.](./src/assets/images/worklog/sprint%205_board1a.png "Sprint 5a.")
+
+![This is a alt text.](./src/assets/images/worklog/sprint%205_board1b.png "Sprint 5b.")
+
+#### TO DO IN NEXT SESSION
+
+* Make reminder function work 
+* Display mini calendar in aside section
+* Navigate between years and generate localstorage for each year
+* Apply CSS to the calendar
+* Display background by event
+* Do the function to order events by date in de displayed list
+* Give header to the project 
+
+## 5th May 
+
+### PARTICIPANTS 
+
+* Jesús Herrera
+* Alejandro Ávila
+* Alicia Cembranos
+
+### DONE
+
+* Make reminder function work 
+* Display mini calendar in aside section
+* Navigate between years and generate localstorage for each year
+* Apply CSS to the calendar
+* Display background by event
+* Do the function to order events by date in de displayed list
+* Give header to the project 
+
+### DIFFICULTIES
+
+* we faced a lot of problems displaying the minicalendar and add the functionality to switch between years to it. Finally we had to modify the numberOfMonths because it was set with the value of 12 and this made the functionality doesn't work properly.
+* The create event list function was modified in the previous sprint and beacause of this the logical of the eventlistener give to the day number in th calendar must been fixed.
+
+#### LESSONS LEARNED
+
+* The recursion method to navigate within the DOM.
+* The childElementCount property.
+* Give and interval ID property to the event to know what setTimeout we have to clear.
+
+
+#### PERFORMED AND IN PROCESS TASKS BY TEAM MEMBER
+
+![This is a alt text.](./src/assets/images/worklog/Sprint%206.png "Sprint 6.")
+
+
+![This is a alt text.](./src/assets/images/worklog/sprint%206_board1a.png "Sprint 6a.")
+
+
+
+#### TASK NOT FINNISHED
+
+![This is a alt text.](./src/assets/images/worklog/not%20finnished.png "Tasks not ended.")
 
         
