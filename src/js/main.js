@@ -11,7 +11,7 @@ import { createMiniCalendar } from "./calendar.js";
 const main = document.querySelector("main");
 
 const year = new Date().getFullYear();
-const locale = "us-US";
+const locale = "en-US";
 
 const numberOfMonths = [...Array(12).keys()];
 const nextBtn = document.getElementById("dayCard__nextButton");
