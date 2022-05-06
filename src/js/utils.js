@@ -87,6 +87,7 @@ function displayDayCard(e) {
   currentDayAside.textContent = `${regularNumbers} ${currentMonth}`;
 
   eventList.textContent = ""; //reset list content
+
   if (calendarEventList.length > 0) {
     calendarEventList.forEach((eventli) => {
       const arrayOfEvents = getEventsFromLocalStorage(year);

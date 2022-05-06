@@ -26,7 +26,8 @@ const eventsColor = [{
 ];
 
 const saveEvents = (year, month, day, event, duration = 0) => {
-  // TODO: Save events to local storage with 3+ months of duration
+  const eventList = document.getElementById("dayCard__ul");
+  createEventList(eventList, event);
   if (localStorage.getItem(`data-${year}`)) {
     let newEvent = JSON.parse(localStorage.getItem(`data-${year}`));
 
