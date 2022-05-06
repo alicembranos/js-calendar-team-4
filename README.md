@@ -183,3 +183,4 @@ We are three motivated and passionate web developpers currently studying at Asse
 ## Demo
 
 Insert gif or link to demo
+![Video Demo](./src/assets/video/Calendar%20Demo.mp4 "Video Demo.")
