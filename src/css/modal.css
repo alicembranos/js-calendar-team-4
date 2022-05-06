@@ -13,28 +13,251 @@
 .modal__createEventForm {
     position: relative;
     display: flex;
-    font-size: 0.7rem;
+    height: 26rem;
+    font-size: 0.9rem;
     background-color: #f9f9f9;
     padding: 1rem 3rem;
-    color: black;
+    color: rgb(31, 31, 31);
     border-radius: 0.5rem;
-    /* pointer-events: none; */
+}
+
+.modal__h2 {
+    margin: 0.2rem 0 1rem -0.6rem;
+    color: var(--primary-color);
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.3rem;
+}
+
+.modal__span {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.name-modal__label {
+    margin-left: -0.5rem;
+    margin-bottom: 1rem;
+    color: #727272;
+}
+
+.name-modal--type__label {
+    padding-top: 3.7rem;
+    margin-left: -0.5rem;
+    color: #727272;
+}
+
+.input__title {
+    width: 10rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
+}
+
+.input__title:focus,
+.style--initial--date__input:focus,
+.style--initial--time__input:focus,
+.style--end--date__input:focus,
+.style--end--time__input:focus,
+.style-modal__select:focus,
+.style-modal__textarea:focus {
+    border-color:#064663;
+    box-shadow:1px 1px 1px 1px #20a0db;
+    outline: none;
+}
+
+.style--initial--date__input {
+    width: 6rem;
+    padding: 0.3rem 0.3rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+    color: #727272;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
+}
+
+
+
+.style--end--date__input {
+    width: 6.5rem;
+    padding: 0.3rem 0.3rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+    color: #727272;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
+}
+
+.style--initial--time__input {
+    width: 4.4rem;
+    padding: 0.3rem 0.3rem;
+    margin-bottom: 1rem;
+    color: #727272;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
+}
+
+.style--end--time__input {
+    width: 4.5rem;
+    padding: 0.3rem 0.3rem;
+    margin-bottom: 1rem;
+    color: #727272;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
+}
+
+.style-modal__textarea {
+    width: 10rem;
+    height: 5rem;
+    padding: 0.3rem 0.3rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    color: #727272;
+    font-size: 0.8rem;
+    font-weight: 300;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
+}
+
+.style-modal__select {
+    width: 10rem;
+    padding: 0.3rem 0.3rem;
+    margin-bottom: 1rem;
+    color: #727272;
+    font-size: 0.7rem;
+    font-weight: 300;
+    border: 1.7px solid #E5E5E5;
+    border-radius: 0.2rem;
 }
 
 .modal__infoEvent {
-    position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 20rem;
+    width: 16rem;
+    position: relative;
+    padding:1rem 2.5rem;
     font-size: 0.7rem;
     background-color: #f9f9f9;
-    padding: 1rem 3rem;
     color: black;
     border-radius: 0.5rem;
+}
+
+.modal__info-title {
+    margin-bottom: 0.4rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+}
+
+.modal__initalDate {
+    color: var(--tertiary-color);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.modal-eventInfo__p {
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: #000;
+    font-size: 0.8rem;
+}
+
+.modal__endDate {
+    color: var(--tertiary-color);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.modal__eventType {
+    color: var(--tertiary-color);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.modal__description {
+    color: var(--tertiary-color);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.modal__doneBtn {
+    height: 2.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.3rem;
+    border-radius: 0.2rem;
+    border: none;
+    background-color: var(--tertiary-color);
+    font-size: 0.9rem;
+    color: #eeeeee;
+}
+
+.modal__doneBtn:hover {
+    background-color: #115879;
+}
+
+.modal__exitBtn {
+    height: 1.2rem;
+    border-radius: 0.2rem;
+    border: none;
+    background-color: var(--quaternary-color);
+    font-size: 0.8rem;
+    color: #000;
+}
+
+.modal__exitBtn:hover {
+    background-color: #cc974d;
 }
 
 .modal__col {
     display: flex;
     flex-direction: column;
-    border: 1px solid yellow;
     padding: 1.3rem;
+}
+
+.form__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.form__acceptBtn {
+    height: 3.3rem;
+    width: 7rem;
+    border-radius: 0.2rem;
+    border: none;
+    background-color: var(--tertiary-color);
+    color: #eeeeee;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.form__acceptBtn:hover {
+    background-color: #115879;
+}
+
+.form__cancelBtn {
+    height: 1.3rem;
+    width: 7rem;
+    margin-top: 0.3rem;
+    border-radius: 0.2rem;
+    border: none;
+    background-color: var(--quaternary-color);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.form__cancelBtn:hover {
+    background-color: #cc974d;
 }

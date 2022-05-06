@@ -30,30 +30,30 @@
     </main>
     <div id='modal__containerCreate' class="modal__container hide">
         <div id="modal__createEvent" class="modal__createEvent ">
-            <h2 id="modal__h2" class="modal__h2">Create <span id="modal__span" class="modal__span">Event</span></h2>
             <form id="modal__createEventForm" class="modal__createEventForm">
                 <div id="modal__col" class="modal__col">
-                    <label for="title">Title</label>
-                    <input id="title" type="text" name="title">
+                    <h2 id="modal__h2" class="modal__h2">CREATE<br><span id="modal__span" class="modal__span">EVENT</span></h2>
+                    <label class="name-modal__label" for="title">Title</label>
+                    <input id="title" class="input__title" type="text" name="title">
 
-                    <label for="initial">Initial Date
-                        <input id='initial__date' type="date" name="initial">
-                        <input id='initial__time' type="time" name="initial">
+                    <label class="name-modal__label" for="initial">Initial Date<br>
+                        <input id='initial__date' class="style--initial--date__input" type="date" name="initial">
+                        <input id='initial__time' class="style--initial--time__input" type="time" name="initial">
+                    </label>
+                    
+                    
+                    <label class="name-modal__label" for="checkbox__endDate"><input  id="checkbox__endDate" type="checkbox" name="checkbox__endDate">End Date</label>
+
+                    <label for="end" class="<!-- hide --> name-modal__label">End Date
+                        <input id='end__date' class="style--end--date__input" type="date" name="end">
+                        <input id='end__time' class="style--end--time__input" type="time" name="end">
                     </label>
 
-                    <input id="checkbox__endDate" type="checkbox" name="checkbox__endDate">
-                    <label for="checkbox__endDate">End Date</label>
+                    
+                    <label class="name-modal__label" for="checkbox__reminder"><input id="checkbox__reminder" type="checkbox" name="checkbox__reminder">Remind me when this event expire</label>
 
-                    <label for="end" class="hide">End Date
-                        <input id='end__date' type="date" name="end">
-                        <input id='end__time' type="time" name="end">
-                    </label>
-
-                    <input id="checkbox__reminder" type="checkbox" name="checkbox__reminder">
-                    <label for="checkbox__reminder">Remind me when this event expire</label>
-
-                    <label for="select__reminder" class="hide">Reminder
-                        <select id="select__reminder" name="select__reminder">
+                    <label for="select__reminder" class="<!-- hide --> name-modal__label">Reminder
+                        <select id="select__reminder" class="style-modal__select" name="select__reminder">
                             <option value="">--Please choose an option--</option>
                             <option value="5">5 minutes</option>
                             <option value="10">10 minutes</option>
@@ -64,8 +64,8 @@
 
                 </div>
                 <div class="modal__col">
-                    <label for="select__eventType">Event Type</label>
-                    <select id="select__eventType" name="select__eventType">
+                    <label class="name-modal--type__label" for="select__eventType">Event Type</label>
+                    <select class="style-modal__select" id="select__eventType" name="select__eventType">
                         <option value="">--Please choose an option--</option>
                         <option value="Meeting">Meeting</option>
                         <option value="Personal">Personal</option>
@@ -73,8 +73,8 @@
                         <option value="Tinder">Tinder</option>
                     </select>
 
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" placeholder="Add a description"></textarea>
+                    <label class="name-modal__label" for="description">Description</label>
+                    <textarea id="description" class="style-modal__textarea" name="description" placeholder="Add a description"></textarea>
 
                     <article class="form__buttons">
                         <button id="form__acceptBtn" class="form__acceptBtn" type="submit">Accept</button>
